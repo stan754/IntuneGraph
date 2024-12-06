@@ -30,7 +30,7 @@
     Copyright         = '(c) Stan van de Wiel. All rights reserved.'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description       = 'Powershell Module to upload intunewin to Intune.'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
