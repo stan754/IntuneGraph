@@ -26,7 +26,7 @@ function Add-Win32Lob() {
         [string]$description,
         [parameter(Mandatory = $true, Position = 4)]
         [ValidateNotNullOrEmpty()]
-        $detectionRules,
+        [array] $detectionRules,
         [parameter(Mandatory = $true, Position = 5)]
         [ValidateNotNullOrEmpty()]
         $returnCodes,
