@@ -3,28 +3,28 @@ Function Get-IntuneWinXML() {
     [Parameter(Mandatory = $true)]
     $SourceFile,
     [Parameter(Mandatory = $true)]
-    $fileName,
-    [Parameter(Mandatory = $false)]
-    [ValidateSet("false", "true")]
-    [string]$removeitem = "true"
+    $fileName
   )
 
   Test-SourceFile "$SourceFile"
 
-  $Directory = [System.IO.Path]::GetDirectoryName("$SourceFile")
-
-  Add-Type -Assembly System.IO.Compression.FileSystem
-  $zip = [IO.Compression.ZipFile]::OpenRead("$SourceFile")
-
-  $zip.Entries | Where-Object { $_.Name -like "$filename" } | ForEach-Object {
-    [System.IO.Compression.ZipFileExtensions]::ExtractToFile($_, "$Directory\$filename", $true)
+  try {
+    $archive = [System.IO.Compression.ZipFile]::OpenRead($SourceFile)
+    $file = $archive.Entries | Where-Object { $_.Name -eq $fileName }
+    $stream = $file.Open()
+    $reader = New-Object System.IO.BinaryReader($stream)
+    $output = $reader.ReadBytes($stream.Length)
+    $reader.Close()
+    $stream.Close()
+    [xml]$IntuneWinXML = [System.Text.Encoding]::UTF8.GetString($output)
+    return $IntuneWinXML
   }
-
-  $zip.Dispose()
-
-  [xml]$IntuneWinXML = Get-Content "$Directory\$filename"
-
-  return $IntuneWinXML
-
-  if ($removeitem -eq "true") { remove-item "$Directory\$filename" }
+  catch {
+    Write-Error "Failed to read file '$SourceFile'. Error: $_"
+  }
+  finally {
+    if ($archive) {
+      $archive.Dispose()
+    }
+  }
 }
