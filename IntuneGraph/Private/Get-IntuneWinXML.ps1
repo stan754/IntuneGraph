@@ -9,6 +9,7 @@ Function Get-IntuneWinXML() {
   Test-SourceFile "$SourceFile"
 
   try {
+    Add-Type -Assembly System.IO.Compression.FileSystem
     $archive = [System.IO.Compression.ZipFile]::OpenRead($SourceFile)
     $file = $archive.Entries | Where-Object { $_.Name -eq $fileName }
     $stream = $file.Open()
