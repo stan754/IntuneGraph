@@ -46,11 +46,11 @@ function Add-Win32Lob() {
     try	{
         $LOBType = "microsoft.graph.win32LobApp"
 
-        Write-Host "Testing if SourceFile '$SourceFile' Path is valid..." -ForegroundColor Yellow
+        Write-Verbose "Testing if SourceFile '$SourceFile' Path is valid..."
         Test-SourceFile "$SourceFile"
 
-        Write-Host
-        Write-Host "Creating JSON data to pass to the service..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Creating JSON data to pass to the service..."
 
         # Funciton to read Win32LOB file
         $DetectionXML = Get-IntuneWinXML "$SourceFile" -fileName "detection.xml"
@@ -134,20 +134,20 @@ function Add-Win32Lob() {
             break
         }
 
-        Write-Host
-        Write-Host "Creating application in Intune..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Creating application in Intune..."
         $mobileApp = Invoke-PostRequest "mobileApps" ($mobileAppBody | ConvertTo-Json)
 
         # Get the content version for the new app (this will always be 1 until the new app is committed).
-        Write-Host
-        Write-Host "Creating Content Version in the service for the application..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Creating Content Version in the service for the application..."
         $appId = $mobileApp.id
         $contentVersionUri = "mobileApps/$appId/$LOBType/contentVersions"
         $contentVersion = Invoke-PostRequest $contentVersionUri "{}"
 
         # Encrypt file and Get File Information
-        Write-Host
-        Write-Host "Getting Encryption Information for '$SourceFile'..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Getting Encryption Information for '$SourceFile'..."
 
         $encryptionInfo = @{}
         $encryptionInfo.encryptionKey = $DetectionXML.ApplicationInfo.EncryptionInfo.EncryptionKey
@@ -168,23 +168,23 @@ function Add-Win32Lob() {
         $EncrySize = (Get-Item "$IntuneWinFile").Length
 
         # Create a new file for the app.
-        Write-Host
-        Write-Host "Creating a new file entry in Azure for the upload..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Creating a new file entry in Azure for the upload..."
         $contentVersionId = $contentVersion.id
         $fileBody = Get-AppFileBody "$FileName" $Size $EncrySize $null
         $filesUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files"
         $file = Invoke-PostRequest $filesUri ($fileBody | ConvertTo-Json)
 
         # Wait for the service to process the new file request.
-        Write-Host
-        Write-Host "Waiting for the file entry URI to be created..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Waiting for the file entry URI to be created..."
         $fileId = $file.id
         $fileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId"
         $file = Wait-FileProcessing $fileUri "AzureStorageUriRequest"
 
         # Upload the content to Azure Storage.
-        Write-Host
-        Write-Host "Uploading file to Azure Storage..." -f Yellow
+        Write-Verbose
+        Write-Verbose "Uploading file to Azure Storage..."
 
         Add-FileToAzureStorage $file.azureStorageUri "$IntuneWinFile" $fileUri
 
@@ -192,26 +192,26 @@ function Add-Win32Lob() {
         Remove-Item "$IntuneWinFile" -Force
 
         # Commit the file.
-        Write-Host
-        Write-Host "Committing the file into Azure Storage..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Committing the file into Azure Storage..."
         $commitFileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId/commit"
         Invoke-PostRequest $commitFileUri ($fileEncryptionInfo | ConvertTo-Json)
 
         # Wait for the service to process the commit file request.
-        Write-Host
-        Write-Host "Waiting for the service to process the commit file request..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Waiting for the service to process the commit file request..."
         $file = Wait-FileProcessing $fileUri "CommitFile"
 
         # Commit the app.
-        Write-Host
-        Write-Host "Committing the file into Azure Storage..." -ForegroundColor Yellow
+        Write-Verbose
+        Write-Verbose "Committing the file into Azure Storage..."
         $commitAppUri = "mobileApps/$appId"
         $commitAppBody = Get-AppCommitBody $contentVersionId $LOBType
         Invoke-PatchRequest $commitAppUri ($commitAppBody | ConvertTo-Json)
 
-        Write-Host "Sleeping for $Sleep seconds to allow patch completion..." -f Magenta
+        Write-Verbose "Sleeping for $Sleep seconds to allow patch completion..."
         Start-Sleep $Sleep
-        Write-Host
+        Write-Verbose
 
         $FinalApplicationResponse = Invoke-GetRequest "mobileApps/$appId"
 
@@ -220,6 +220,6 @@ function Add-Win32Lob() {
 
     catch {
         Write-Host ""
-        Write-Host -ForegroundColor Red "Aborting with exception: $($_.Exception.ToString())"
+        Write-Error "Aborting with exception: $($_.Exception.ToString())"
     }
 }
