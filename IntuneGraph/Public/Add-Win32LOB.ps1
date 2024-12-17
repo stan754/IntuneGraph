@@ -1,46 +1,77 @@
-<#
-.SYNOPSIS
-This function is used to upload a Win32 Application to the Intune Service
-.DESCRIPTION
-This function is used to upload a Win32 Application to the Intune Service
-.EXAMPLE
-Add-Win32Lob "C:\Packages\package.intunewin" -publisher "Microsoft" -description "Package"
-This example uses all parameters required to add an intunewin File into the Intune Service
-.NOTES
-NAME: Add-Win32LOB
-#>
 function Add-Win32Lob() {
+    <#
+    .SYNOPSIS
+        This function is used to upload a Win32 Application to Microsoft Intune
+    .DESCRIPTION
+        This function is used to upload a Win32 Application to Microsoft Intune using the Microsoft Graph API with the only dependency being the Microsoft.Graph.Authentication Module
+    .EXAMPLE
+        Add-Win32Lob -SourceFile "C:\Packages\package.intunewin" `
+            -Publisher "Microsoft" `
+            -Description "Package description" `
+            -DetectionRules @($fileRule) `
+            -ReturnCodes $defaultCodes
+        # Adds a package to Microsoft Intune with just the required parameters, for anything that's not an MSI the installcmd and uninstallcmd
+    .EXAMPLE
+        Add-Win32Lob -SourceFile "C:\Packages\package.intunewin" `
+            -Publisher "Microsoft" `
+            -Description "Package description" `
+            -DetectionRules @($fileRule) `
+            -ReturnCodes $defaultCodes `
+            -InstallCmdLine "setup.exe" `
+            -UninstallCmdLine "uninstall.exe"
+        # Adds a package to Microsoft Intune with just the required parameters for an exe installer
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        This function outputs the application body received from the Graph API as an object
+    .NOTES
+        NAME: Add-Win32LOB
+    #>
     [cmdletbinding()]
     param (
+        # The intunewin sourcefile created with the IntuneWinAppUtil.exe
         [parameter(Mandatory = $true, Position = 1)]
         [ValidateNotNullOrEmpty()]
-        [string]$SourceFile,
+        [string] $SourceFile,
+        # The DisplayName for the application in Microsoft Intune
+        # This parameter is optional and will be filled with information from the detection.xml otherwise
         [parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
-        [string]$displayName,
+        [string] $DisplayName,
+        # The Publisher for the application in Microsoft Intune
         [parameter(Mandatory = $true, Position = 2)]
         [ValidateNotNullOrEmpty()]
-        [string]$publisher,
+        [string] $Publisher,
+        # The Description for the application in Microsoft Intune
         [parameter(Mandatory = $true, Position = 3)]
         [ValidateNotNullOrEmpty()]
-        [string]$description,
+        [string] $Description,
+        # An array of detection rules for the application needs a minimum of 1
         [parameter(Mandatory = $true, Position = 4)]
         [ValidateNotNullOrEmpty()]
-        [array] $detectionRules,
+        [array] $DetectionRules,
+        # The returncodes for the application in Microsoft Intune
+        # To use the default returncodes you can get these with Get-DefaultReturnCodes
         [parameter(Mandatory = $true, Position = 5)]
         [ValidateNotNullOrEmpty()]
-        $returnCodes,
+        [array] $ReturnCodes,
+        # The install command to install the application
         [parameter(Mandatory = $false, Position = 6)]
         [ValidateNotNullOrEmpty()]
-        [string]$installCmdLine,
+        [string] $InstallCmdLine,
+        # The uninstall command to uninstall the application
         [parameter(Mandatory = $false, Position = 7)]
         [ValidateNotNullOrEmpty()]
-        [string]$uninstallCmdLine,
+        [string] $UninstallCmdLine,
+        # The installscope for the application this can be either system or user
+        # By default this is set to system
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
-        $installExperience = "system",
+        [string] $installExperience = "system",
+        # The time the function sleeps after creating and uploading the application to make sure it's available
+        # By default this is 30 seconds
         [parameter(Mandatory = $false)]
-        $Sleep = 30
+        [int] $Sleep = 30
     )
 
     try	{
@@ -52,11 +83,9 @@ function Add-Win32Lob() {
         Write-Verbose
         Write-Verbose "Creating JSON data to pass to the service..."
 
-        # Funciton to read Win32LOB file
         $DetectionXML = Get-IntuneWinXML "$SourceFile" -fileName "detection.xml"
 
-        # If displayName input don't use Name from detection.xml file
-        if ($displayName) { $DisplayName = $displayName }
+        if ($DisplayName) { $DisplayName = $DisplayName }
         else { $DisplayName = $DetectionXML.ApplicationInfo.Name }
       
         $FileName = $DetectionXML.ApplicationInfo.FileName
@@ -67,9 +96,7 @@ function Add-Win32Lob() {
 
         $Ext = [System.IO.Path]::GetExtension($SetupFileName)
 
-        if ((($Ext).contains("msi") -or ($Ext).contains("Msi")) -and (!$installCmdLine -or !$uninstallCmdLine)) {
-
-            # MSI
+        if ((($Ext).contains("msi") -or ($Ext).contains("Msi")) -and (!$InstallCmdLine -or !$UninstallCmdLine)) {
             $MsiExecutionContext = $DetectionXML.ApplicationInfo.MsiInfo.MsiExecutionContext
             $MsiPackageType = "DualPurpose"
             if ($MsiExecutionContext -eq "System") { $MsiPackageType = "PerMachine" }
@@ -86,15 +113,15 @@ function Add-Win32Lob() {
 
             $mobileAppBody = Get-Win32AppBody `
                 -MSI `
-                -displayName "$DisplayName" `
-                -publisher "$publisher" `
-                -description $description `
+                -DisplayName "$DisplayName" `
+                -Publisher "$Publisher" `
+                -Description $Description `
                 -filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
                 -installExperience $installExperience `
                 -MsiPackageType $MsiPackageType `
                 -MsiProductCode $MsiProductCode `
-                -MsiProductName $displayName `
+                -MsiProductName $DisplayName `
                 -MsiProductVersion $MsiProductVersion `
                 -MsiPublisher $MsiPublisher `
                 -MsiRequiresReboot $MsiRequiresReboot `
@@ -102,9 +129,9 @@ function Add-Win32Lob() {
         }
 
         else {
-            $mobileAppBody = Get-Win32AppBody -EXE -displayName "$DisplayName" -publisher "$publisher" `
-                -description $description -filename $SourceFileName -SetupFileName "$SetupFileName" `
-                -installExperience $installExperience -installCommandLine $installCmdLine `
+            $mobileAppBody = Get-Win32AppBody -EXE -DisplayName "$DisplayName" -Publisher "$Publisher" `
+                -Description $Description -filename $SourceFileName -SetupFileName "$SetupFileName" `
+                -installExperience $installExperience -installCommandLine $InstallCmdLine `
                 -uninstallCommandLine $uninstallcmdline
         }
 
@@ -117,13 +144,12 @@ function Add-Win32Lob() {
         }
 
         else {
-            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'detectionRules' -Value $detectionRules
+            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'DetectionRules' -Value $DetectionRules
         }
 
-        #ReturnCodes
 
-        if ($returnCodes) {
-            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'returnCodes' -Value @($returnCodes)
+        if ($ReturnCodes) {
+            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'ReturnCodes' -Value @($ReturnCodes)
         }
 
         else {
@@ -138,14 +164,12 @@ function Add-Win32Lob() {
         Write-Verbose "Creating application in Intune..."
         $mobileApp = Invoke-PostRequest "mobileApps" ($mobileAppBody | ConvertTo-Json)
 
-        # Get the content version for the new app (this will always be 1 until the new app is committed).
         Write-Verbose
         Write-Verbose "Creating Content Version in the service for the application..."
         $appId = $mobileApp.id
         $contentVersionUri = "mobileApps/$appId/$LOBType/contentVersions"
         $contentVersion = Invoke-PostRequest $contentVersionUri "{}"
 
-        # Encrypt file and Get File Information
         Write-Verbose
         Write-Verbose "Getting Encryption Information for '$SourceFile'..."
 
@@ -161,13 +185,11 @@ function Add-Win32Lob() {
         $fileEncryptionInfo = @{}
         $fileEncryptionInfo.fileEncryptionInfo = $encryptionInfo
 
-        # Extracting encrypted file
         $IntuneWinFile = Get-IntuneWinFile "$SourceFile" -fileName "$filename"
 
         [int64]$Size = $DetectionXML.ApplicationInfo.UnencryptedContentSize
         $EncrySize = (Get-Item "$IntuneWinFile").Length
 
-        # Create a new file for the app.
         Write-Verbose
         Write-Verbose "Creating a new file entry in Azure for the upload..."
         $contentVersionId = $contentVersion.id
@@ -175,34 +197,28 @@ function Add-Win32Lob() {
         $filesUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files"
         $file = Invoke-PostRequest $filesUri ($fileBody | ConvertTo-Json)
 
-        # Wait for the service to process the new file request.
         Write-Verbose
         Write-Verbose "Waiting for the file entry URI to be created..."
         $fileId = $file.id
         $fileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId"
         $file = Wait-FileProcessing $fileUri "AzureStorageUriRequest"
 
-        # Upload the content to Azure Storage.
         Write-Verbose
         Write-Verbose "Uploading file to Azure Storage..."
 
         Add-FileToAzureStorage $file.azureStorageUri "$IntuneWinFile" $fileUri
 
-        # Need to Add removal of IntuneWin file
         Remove-Item "$IntuneWinFile" -Force
 
-        # Commit the file.
         Write-Verbose
         Write-Verbose "Committing the file into Azure Storage..."
         $commitFileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId/commit"
         Invoke-PostRequest $commitFileUri ($fileEncryptionInfo | ConvertTo-Json)
 
-        # Wait for the service to process the commit file request.
         Write-Verbose
         Write-Verbose "Waiting for the service to process the commit file request..."
         $file = Wait-FileProcessing $fileUri "CommitFile"
 
-        # Commit the app.
         Write-Verbose
         Write-Verbose "Committing the file into Azure Storage..."
         $commitAppUri = "mobileApps/$appId"

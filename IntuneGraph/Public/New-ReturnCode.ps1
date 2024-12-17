@@ -1,11 +1,28 @@
-function New-ReturnCode() {
-  param (
-    [parameter(Mandatory = $true)]
-    [int]$returnCode,
-    [parameter(Mandatory = $true)]
-    [ValidateSet('success', 'softReboot', 'hardReboot', 'retry')]
-    $type
-  )
+function New-ReturnCode {
+    <#
+    .SYNOPSIS
+        This function is used to create new returncodes for a Win32 Application in Microsoft Intune
+    .DESCRIPTION
+        This function is used to create new returncodes for a Win32 Application in Microsoft Intune
+    .EXAMPLE
+        New-ReturnCode -ReturnCode 1707 -Type 'success'
+        # Returns the default returncodes from Microsoft Intune
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        This function outputs a new return code for a Win32 Application in Microsoft Intune
+    .NOTES
+        NAME: New-ReturnCode
+    #>
+    param (
+      # The return code
+      [parameter(Mandatory = $true)]
+      [int] $ReturnCode,
+      # The type of return code (success, softreboot, hardreboot, retry)
+      [parameter(Mandatory = $true)]
+      [ValidateSet('success', 'softReboot', 'hardReboot', 'retry')]
+      [string] $Type
+    )
 
-  @{"returnCode" = $returnCode; "type" = "$type" }
+    @{"returnCode" = $ReturnCode; "type" = "$Type" }
 }
