@@ -1,9 +1,9 @@
-Function Get-IntuneWinXML() {
+Function Get-IntuneWinXML {
   param(
     [Parameter(Mandatory = $true)]
-    $SourceFile,
+    [string] $SourceFile,
     [Parameter(Mandatory = $true)]
-    $fileName
+    [string] $fileName
   )
 
   Test-SourceFile "$SourceFile"

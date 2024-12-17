@@ -1,4 +1,10 @@
-function Wait-FileProcessing($fileUri, $stage) {
+function Wait-FileProcessing {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string] $fileUri, 
+        [Parameter(Mandatory = $true)]
+        [string] $stage
+    )
     $attempts = 600
     $waitTimeInSeconds = 10
 

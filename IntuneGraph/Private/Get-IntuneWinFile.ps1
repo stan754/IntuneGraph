@@ -1,9 +1,9 @@
 Function Get-IntuneWinFile() {
     param(
         [Parameter(Mandatory = $true)]
-        $SourceFile,
+        [string] $SourceFile,
         [Parameter(Mandatory = $true)]
-        $fileName
+        [string] $fileName
     )
 
     $Directory = New-TemporaryFolder

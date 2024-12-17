@@ -1,4 +1,4 @@
-Function Test-SourceFile() {
+Function Test-SourceFile {
     param (
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]

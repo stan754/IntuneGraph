@@ -1,4 +1,4 @@
-function Get-Win32AppBody() {
+function Get-Win32AppBody {
     param (
         [parameter(Mandatory = $true, ParameterSetName = "MSI", Position = 1)]
         [Switch]$MSI,

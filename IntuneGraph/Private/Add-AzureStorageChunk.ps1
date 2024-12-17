@@ -1,4 +1,13 @@
-function Add-AzureStorageChunk($sasUri, $id, $body) {
+function Add-AzureStorageChunk {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $sasUri, 
+        [Parameter(Mandatory = $true)]
+        [string] $id, 
+        [Parameter(Mandatory = $true)]
+        [byte[]] $body
+    )
+
     $uri = "$sasUri&comp=block&blockid=$id"
     $request = "PUT $uri"
 

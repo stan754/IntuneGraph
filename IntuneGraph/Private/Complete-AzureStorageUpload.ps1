@@ -1,4 +1,11 @@
-function Complete-AzureStorageUpload($sasUri, $ids) {
+function Complete-AzureStorageUpload {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $sasUri, 
+        [Parameter(Mandatory = $true)]
+        [array] $ids
+    )
+
     $uri = "$sasUri&comp=blocklist"
     $request = "PUT $uri"
 
