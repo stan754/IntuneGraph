@@ -7,7 +7,7 @@ This function invokes a request to the Microsoft Graph API
 
 ```
 Invoke-Request [-Method] <String> [-CollectionPath] <String> [[-Body] <String>] [[-BaseUrl] <String>]
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -78,21 +78,6 @@ Aliases:
 Required: False
 Position: 4
 Default value: Https://graph.microsoft.com/beta/deviceAppManagement/
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

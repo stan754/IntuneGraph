@@ -6,7 +6,7 @@ This function renews the Azure storage upload to remain active
 ## SYNTAX
 
 ```
-Update-AzureStorageUpload [-FileUri] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Update-AzureStorageUpload [-FileUri] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,21 +31,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

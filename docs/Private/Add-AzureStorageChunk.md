@@ -6,8 +6,7 @@ This function uploads a chunk to an Azure Storage Blob using a Sas Uri
 ## SYNTAX
 
 ```
-Add-AzureStorageChunk [-SasUri] <String> [-Id] <String> [-Body] <Byte[]> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Add-AzureStorageChunk [-SasUri] <String> [-Id] <String> [-Body] <Byte[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,21 +61,6 @@ Aliases:
 
 Required: True
 Position: 3
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -6,8 +6,7 @@ This function waits for a file to finish processing a specified stage
 ## SYNTAX
 
 ```
-Wait-FileProcessing [-FileUri] <String> [-Stage] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Wait-FileProcessing [-FileUri] <String> [-Stage] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,21 +46,6 @@ Aliases:
 
 Required: True
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

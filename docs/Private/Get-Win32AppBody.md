@@ -10,14 +10,14 @@ This function returns a Win32 application body for the Microsoft Graph API
 Get-Win32AppBody [-MSI] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String>
  -SetupFileName <String> -InstallExperience <String> -MSIPackageType <String> -MSIProductCode <String>
  [-MSIProductName <String>] -MSIProductVersion <String> [-MSIPublisher <String>] -MSIRequiresReboot <Boolean>
- -MSIUpgradeCode <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ -MSIUpgradeCode <String> [<CommonParameters>]
 ```
 
 ### EXE
 ```
 Get-Win32AppBody [-EXE] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String>
  -SetupFileName <String> -InstallExperience <String> -InstallCommandLine <String>
- -UninstallCommandLine <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ -UninstallCommandLine <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -309,21 +309,6 @@ Parameter Sets: MSI
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

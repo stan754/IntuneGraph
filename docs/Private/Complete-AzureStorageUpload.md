@@ -6,8 +6,7 @@ This function completes the Azure storage upload by committing the block list
 ## SYNTAX
 
 ```
-Complete-AzureStorageUpload [-SasUri] <String> [-Ids] <Array> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Complete-AzureStorageUpload [-SasUri] <String> [-Ids] <Array> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,21 +46,6 @@ Aliases:
 
 Required: True
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -7,7 +7,7 @@ This function uploads a file to an Azure Storage Blob using a Sas Uri
 
 ```
 Add-FileToAzureStorage [-SasUri] <String> [-FilePath] <String> [-FileUri] <String>
- [[-AzureStorageUploadChunkSizeInMb] <Int32>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [[-AzureStorageUploadChunkSizeInMb] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -78,21 +78,6 @@ Aliases:
 Required: False
 Position: 4
 Default value: 6
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
