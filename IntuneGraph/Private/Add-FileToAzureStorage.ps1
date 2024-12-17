@@ -1,12 +1,30 @@
 function Add-FileToAzureStorage {
+    <#
+    .SYNOPSIS
+        This function uploads a file to an Azure Storage Blob using a Sas Uri
+    .DESCRIPTION
+        This function uploads a file to an Azure Storage Blob using a Sas Uri
+    .EXAMPLE
+        Add-FileToAzureStorage -SasUri $file.azureStorageUri -FilePath IntunePackage.intunewin -FileUri $fileUri
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        None. This function returns nothing
+    .NOTES
+        NAME: Add-FileToAzureStorage
+    #>
     [CmdletBinding()]
     param (
+        # The Azure Storage Blob Sas Uri
         [Parameter(Mandatory = $true)]
         [string] $SasUri,
+        # The path to the file to upload
         [Parameter(Mandatory = $true)]
         [string] $FilePath,
+        # The intune file Uri
         [Parameter(Mandatory = $true)]
         [string] $FileUri,
+        # The size of the chunks to send to the Azure Storage Blob
         [Parameter(Mandatory = $false)]
         [int] $AzureStorageUploadChunkSizeInMb = 6l
     )

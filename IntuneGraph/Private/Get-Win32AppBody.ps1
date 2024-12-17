@@ -1,92 +1,146 @@
 function Get-Win32AppBody {
+    <#
+    .SYNOPSIS
+        This function returns a Win32 application body for the Microsoft Graph API
+    .DESCRIPTION
+        This function returns a Win32 application body for the Microsoft Graph API
+    .EXAMPLE
+        Get-Win32AppBody `
+            -MSI `
+            -DisplayName "$DisplayName" `
+            -Publisher "$Publisher" `
+            -Description $Description `
+            -Filename $SourceFileName `
+            -SetupFileName "$SetupFileName" `
+            -InstallExperience $installExperience `
+            -MSIPackageType $MsiPackageType `
+            -MSIProductCode $MsiProductCode `
+            -MSIProductName $DisplayName `
+            -MSIProductVersion $MsiProductVersion `
+            -MSIPublisher $MsiPublisher `
+            -MSIRequiresReboot $MsiRequiresReboot `
+            -MSIUpgradeCode $MsiUpgradeCode
+    .EXAMPLE
+        Get-Win32AppBody `
+            -EXE `
+            -DisplayName "$DisplayName" `
+            -Publisher "$Publisher" `
+            -Description $Description `
+            -Filename $SourceFileName `
+            -SetupFileName "$SetupFileName" `
+            -InstallExperience $installExperience `
+            -InstallCommandLine $InstallCmdLine `
+            -UninstallCommandLine $uninstallcmdline
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        This function returns the application body
+    .NOTES
+        NAME: Get-Win32AppBody
+    #>
     param (
+        # Switch to select MSI
         [parameter(Mandatory = $true, ParameterSetName = "MSI", Position = 1)]
-        [Switch]$MSI,
+        [Switch] $MSI,
+        # Switch to select EXE
         [parameter(Mandatory = $true, ParameterSetName = "EXE", Position = 1)]
-        [Switch]$EXE,
+        [Switch] $EXE,
+        # The display name to show in Microsoft Intune
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$displayName,
+        [string] $DisplayName,
+        # The publisher name to show in Microsoft Intune
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$publisher,
+        [string] $Publisher,
+        # The description to show in Microsoft Intune
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$description,
+        [string] $Description,
+        # The file name of the intunewin to show in Microsoft Intune
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$filename,
+        [string] $Filename,
+        # The setup file name
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]$SetupFileName,
+        [string] $SetupFileName,
+        # The install scope of the application
         [parameter(Mandatory = $true)]
         [ValidateSet('system', 'user')]
-        $installExperience,
+        [string] $InstallExperience,
+        # The install command for EXE
         [parameter(Mandatory = $true, ParameterSetName = "EXE")]
         [ValidateNotNullOrEmpty()]
-        $installCommandLine,
+        [string] $InstallCommandLine,
+        # The uninstall command for EXE
         [parameter(Mandatory = $true, ParameterSetName = "EXE")]
         [ValidateNotNullOrEmpty()]
-        $uninstallCommandLine,
+        [string] $UninstallCommandLine,
+        # The MSI package type
+        [parameter(Mandatory = $true, ParameterSetName = "MSI")]
+        [ValidateSet("perMachine", "perUser", "dualPurpose")]
+        [string] $MSIPackageType,
+        # The MSI product code
         [parameter(Mandatory = $true, ParameterSetName = "MSI")]
         [ValidateNotNullOrEmpty()]
-        $MsiPackageType,
-        [parameter(Mandatory = $true, ParameterSetName = "MSI")]
-        [ValidateNotNullOrEmpty()]
-        $MsiProductCode,
+        [string] $MSIProductCode,
+        # The MSI product name
         [parameter(Mandatory = $false, ParameterSetName = "MSI")]
-        $MsiProductName,
+        [string] $MSIProductName,
+        # The MSI product version
         [parameter(Mandatory = $true, ParameterSetName = "MSI")]
         [ValidateNotNullOrEmpty()]
-        $MsiProductVersion,
+        [string] $MSIProductVersion,
+        # The MSI publisher
         [parameter(Mandatory = $false, ParameterSetName = "MSI")]
-        $MsiPublisher,
+        [string] $MSIPublisher,
+        # Whether the MSI app requires the machine to reboot to complete installation
+        [parameter(Mandatory = $true, ParameterSetName = "MSI")]
+        [bool] $MSIRequiresReboot,
+        # The MSI upgrade code
         [parameter(Mandatory = $true, ParameterSetName = "MSI")]
         [ValidateNotNullOrEmpty()]
-        $MsiRequiresReboot,
-        [parameter(Mandatory = $true, ParameterSetName = "MSI")]
-        [ValidateNotNullOrEmpty()]
-        $MsiUpgradeCode
+        [string] $MSIUpgradeCode
     )
 
     if ($MSI) {
         $body = @{ "@odata.type" = "#microsoft.graph.win32LobApp" }
         $body.applicableArchitectures = "x64,x86"
-        $body.description = $description
+        $body.description = $Description
         $body.developer = ""
-        $body.displayName = $displayName
-        $body.fileName = $filename
+        $body.displayName = $DisplayName
+        $body.fileName = $Filename
         $body.installCommandLine = "msiexec /i `"$SetupFileName`""
-        $body.installExperience = @{"runAsAccount" = "$installExperience" }
+        $body.installExperience = @{"runAsAccount" = "$InstallExperience" }
         $body.informationUrl = $null
         $body.isFeatured = $false
         $body.minimumSupportedOperatingSystem = @{"v10_1607" = $true }
         $body.msiInformation = @{
-            "packageType"    = "$MsiPackageType"
-            "productCode"    = "$MsiProductCode"
-            "productName"    = "$MsiProductName"
-            "productVersion" = "$MsiProductVersion"
-            "publisher"      = "$MsiPublisher"
-            "requiresReboot" = "$MsiRequiresReboot"
-            "upgradeCode"    = "$MsiUpgradeCode"
+            "packageType"    = "$MSIPackageType"
+            "productCode"    = "$MSIProductCode"
+            "productName"    = "$MSIProductName"
+            "productVersion" = "$MSIProductVersion"
+            "publisher"      = "$MSIPublisher"
+            "requiresReboot" = "$MSIRequiresReboot"
+            "upgradeCode"    = "$MSIUpgradeCode"
         }
         $body.notes = ""
         $body.owner = ""
         $body.privacyInformationUrl = $null
-        $body.publisher = $publisher
+        $body.publisher = $Publisher
         $body.runAs32bit = $false
         $body.setupFilePath = $SetupFileName
-        $body.uninstallCommandLine = "msiexec /x `"$MsiProductCode`""
+        $body.uninstallCommandLine = "msiexec /x `"$MSIProductCode`""
     }
-
     elseif ($EXE) {
         $body = @{ "@odata.type" = "#microsoft.graph.win32LobApp" }
-        $body.description = $description
+        $body.description = $Description
         $body.developer = ""
-        $body.displayName = $displayName
-        $body.fileName = $filename
-        $body.installCommandLine = "$installCommandLine"
-        $body.installExperience = @{"runAsAccount" = "$installExperience" }
+        $body.displayName = $DisplayName
+        $body.fileName = $Filename
+        $body.installCommandLine = "$InstallCommandLine"
+        $body.installExperience = @{"runAsAccount" = "$InstallExperience" }
         $body.informationUrl = $null
         $body.isFeatured = $false
         $body.minimumSupportedOperatingSystem = @{"v10_1607" = $true }
@@ -94,10 +148,10 @@ function Get-Win32AppBody {
         $body.notes = ""
         $body.owner = ""
         $body.privacyInformationUrl = $null
-        $body.publisher = $publisher
+        $body.publisher = $Publisher
         $body.runAs32bit = $false
         $body.setupFilePath = $SetupFileName
-        $body.uninstallCommandLine = "$uninstallCommandLine"
+        $body.uninstallCommandLine = "$UninstallCommandLine"
     }
 
     $body

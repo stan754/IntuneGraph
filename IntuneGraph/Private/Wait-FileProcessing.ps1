@@ -1,19 +1,35 @@
 function Wait-FileProcessing {
+    <#
+    .SYNOPSIS
+        This function waits for a file to finish processing a specified stage
+    .DESCRIPTION
+        This function waits for a file to finish processing a specified stage
+    .EXAMPLE
+        Wait-FileProcessing -FileUri "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId" -Stage "AzureStorageUriRequest"
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        This function outputs the mobileAppContentFile body when the state is success
+    .NOTES
+        NAME: Wait-FileProcessing
+    #>
     param (
+        # The Microsoft Graph API Uri of the file
         [Parameter(Mandatory = $true)]
-        [string] $fileUri, 
+        [string] $FileUri, 
+        # The stage to wait for to successfully complete
         [Parameter(Mandatory = $true)]
-        [string] $stage
+        [string] $Stage
     )
     $attempts = 600
     $waitTimeInSeconds = 10
 
-    $successState = "$($stage)Success"
-    $pendingState = "$($stage)Pending"
+    $successState = "$($Stage)Success"
+    $pendingState = "$($Stage)Pending"
 
     $file = $null
     while ($attempts -gt 0) {
-        $file = Invoke-GetRequest $fileUri
+        $file = Invoke-GetRequest $FileUri
 
         if ($file.uploadState -eq $successState) {
             break

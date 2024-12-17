@@ -1,4 +1,4 @@
-Function New-DetectionRule() {
+function New-DetectionRule() {
     <#
     .SYNOPSIS
         This function is used to create new detection rules for a Win32 Application in Microsoft Intune

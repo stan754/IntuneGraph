@@ -116,22 +116,28 @@ function Add-Win32Lob() {
                 -DisplayName "$DisplayName" `
                 -Publisher "$Publisher" `
                 -Description $Description `
-                -filename $SourceFileName `
+                -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -installExperience $installExperience `
-                -MsiPackageType $MsiPackageType `
-                -MsiProductCode $MsiProductCode `
-                -MsiProductName $DisplayName `
-                -MsiProductVersion $MsiProductVersion `
-                -MsiPublisher $MsiPublisher `
-                -MsiRequiresReboot $MsiRequiresReboot `
-                -MsiUpgradeCode $MsiUpgradeCode
+                -InstallExperience $installExperience `
+                -MSIPackageType $MsiPackageType `
+                -MSIProductCode $MsiProductCode `
+                -MSIProductName $DisplayName `
+                -MSIProductVersion $MsiProductVersion `
+                -MSIPublisher $MsiPublisher `
+                -MSIRequiresReboot $MsiRequiresReboot `
+                -MSIUpgradeCode $MsiUpgradeCode
         }
         else {
-            $mobileAppBody = Get-Win32AppBody -EXE -DisplayName "$DisplayName" -Publisher "$Publisher" `
-                -Description $Description -filename $SourceFileName -SetupFileName "$SetupFileName" `
-                -installExperience $installExperience -installCommandLine $InstallCmdLine `
-                -uninstallCommandLine $uninstallcmdline
+            $mobileAppBody = Get-Win32AppBody `
+                -EXE `
+                -DisplayName "$DisplayName" `
+                -Publisher "$Publisher" `
+                -Description $Description `
+                -Filename $SourceFileName `
+                -SetupFileName "$SetupFileName" `
+                -InstallExperience $installExperience `
+                -InstallCommandLine $InstallCmdLine `
+                -UninstallCommandLine $uninstallcmdline
         }
 
         if ($DetectionRules.'@odata.type' -contains "#microsoft.graph.win32LobAppPowerShellScriptDetection" -and @($DetectionRules).'@odata.type'.Count -gt 1) {
@@ -149,17 +155,14 @@ function Add-Win32Lob() {
             throw "Intunewin file requires ReturnCodes to be specified, If you want to use the default ReturnCode run 'Get-DefaultReturnCodes'"
         }
 
-        Write-Verbose
         Write-Verbose "Creating application in Intune..."
         $mobileApp = Invoke-PostRequest "mobileApps" ($mobileAppBody | ConvertTo-Json)
 
-        Write-Verbose
         Write-Verbose "Creating Content Version in the service for the application..."
         $appId = $mobileApp.id
         $contentVersionUri = "mobileApps/$appId/$LOBType/contentVersions"
         $contentVersion = Invoke-PostRequest $contentVersionUri "{}"
 
-        Write-Verbose
         Write-Verbose "Getting Encryption Information for '$SourceFile'..."
 
         $encryptionInfo = @{}
@@ -179,36 +182,30 @@ function Add-Win32Lob() {
         [int64]$Size = $DetectionXML.ApplicationInfo.UnencryptedContentSize
         $EncrySize = (Get-Item "$IntuneWinFile").Length
 
-        Write-Verbose
         Write-Verbose "Creating a new file entry in Azure for the upload..."
         $contentVersionId = $contentVersion.id
         $fileBody = Get-AppFileBody "$FileName" $Size $EncrySize $null
         $filesUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files"
         $file = Invoke-PostRequest $filesUri ($fileBody | ConvertTo-Json)
 
-        Write-Verbose
         Write-Verbose "Waiting for the file entry URI to be created..."
         $fileId = $file.id
         $fileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId"
         $file = Wait-FileProcessing $fileUri "AzureStorageUriRequest"
 
-        Write-Verbose
         Write-Verbose "Uploading file to Azure Storage..."
 
         Add-FileToAzureStorage $file.azureStorageUri "$IntuneWinFile" $fileUri
 
         Remove-Item "$IntuneWinFile" -Force
 
-        Write-Verbose
         Write-Verbose "Committing the file into Azure Storage..."
         $commitFileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId/commit"
         Invoke-PostRequest $commitFileUri ($fileEncryptionInfo | ConvertTo-Json)
 
-        Write-Verbose
         Write-Verbose "Waiting for the service to process the commit file request..."
         $file = Wait-FileProcessing $fileUri "CommitFile"
 
-        Write-Verbose
         Write-Verbose "Committing the file into Azure Storage..."
         $commitAppUri = "mobileApps/$appId"
         $commitAppBody = Get-AppCommitBody $contentVersionId $LOBType
@@ -216,7 +213,6 @@ function Add-Win32Lob() {
 
         Write-Verbose "Sleeping for $Sleep seconds to allow patch completion..."
         Start-Sleep $Sleep
-        Write-Verbose
 
         $FinalApplicationResponse = Invoke-GetRequest "mobileApps/$appId"
 
