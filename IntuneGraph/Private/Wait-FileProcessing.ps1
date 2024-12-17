@@ -19,8 +19,7 @@ function Wait-FileProcessing {
             break
         }
         elseif ($file.uploadState -ne $pendingState) {
-            Write-Host -ForegroundColor Red $_.Exception.Message
-            throw "File upload state is not success: $($file.uploadState)"
+            throw "File upload state is not success: $($file.uploadState). Exception: $($_.Exception.Message)"
         }
 
         Start-Sleep $waitTimeInSeconds

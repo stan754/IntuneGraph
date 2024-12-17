@@ -22,8 +22,6 @@ function Add-AzureStorageChunk {
         $null = Invoke-WebRequest $uri -Method Put -Headers $headers -Body $encodedBody
     }
     catch {
-        Write-Host -ForegroundColor Red $request
-        Write-Host -ForegroundColor Red $_.Exception.Message
-        throw
+        throw "'$request' Failed with exception: $($_.Exception.Message)"
     }
 }

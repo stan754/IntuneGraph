@@ -19,8 +19,6 @@ function Complete-AzureStorageUpload {
         Invoke-RestMethod $uri -Method Put -Body $xml
     }
     catch {
-        Write-Host -ForegroundColor Red $request
-        Write-Host -ForegroundColor Red $_.Exception.Message
-        throw
+        throw "'$request' Failed with exception: $($_.Exception.Message)"
     }
 }

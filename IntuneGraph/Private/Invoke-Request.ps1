@@ -33,8 +33,6 @@ function Invoke-Request {
     $response
   }
   catch {
-    Write-Host -ForegroundColor Red $request
-    Write-Host -ForegroundColor Red $_.Exception.Message
-    throw
+    throw "'$request' Failed with exception: $($_.Exception.Message)"
   }
 }

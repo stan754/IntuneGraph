@@ -127,7 +127,6 @@ function Add-Win32Lob() {
                 -MsiRequiresReboot $MsiRequiresReboot `
                 -MsiUpgradeCode $MsiUpgradeCode
         }
-
         else {
             $mobileAppBody = Get-Win32AppBody -EXE -DisplayName "$DisplayName" -Publisher "$Publisher" `
                 -Description $Description -filename $SourceFileName -SetupFileName "$SetupFileName" `
@@ -136,13 +135,8 @@ function Add-Win32Lob() {
         }
 
         if ($DetectionRules.'@odata.type' -contains "#microsoft.graph.win32LobAppPowerShellScriptDetection" -and @($DetectionRules).'@odata.type'.Count -gt 1) {
-            Write-Host
-            Write-Warning "A Detection Rule can either be 'Manually configure detection rules' or 'Use a custom detection script'"
-            Write-Warning "It can't include both..."
-            Write-Host
-            break
+            throw "A Detection Rule can either be 'Manually configure detection rules' or 'Use a custom detection script'"
         }
-
         else {
             $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'DetectionRules' -Value $DetectionRules
         }
@@ -151,13 +145,8 @@ function Add-Win32Lob() {
         if ($ReturnCodes) {
             $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'ReturnCodes' -Value @($ReturnCodes)
         }
-
         else {
-            Write-Host
-            Write-Warning "Intunewin file requires ReturnCodes to be specified"
-            Write-Warning "If you want to use the default ReturnCode run 'Get-DefaultReturnCodes'"
-            Write-Host
-            break
+            throw "Intunewin file requires ReturnCodes to be specified, If you want to use the default ReturnCode run 'Get-DefaultReturnCodes'"
         }
 
         Write-Verbose
@@ -235,7 +224,6 @@ function Add-Win32Lob() {
     }
 
     catch {
-        Write-Host ""
-        Write-Error "Aborting with exception: $($_.Exception.ToString())"
+        throw "Aborting with exception: $($_.Exception.ToString())"
     }
 }
