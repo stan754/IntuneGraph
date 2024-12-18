@@ -1,3 +1,7 @@
+---
+tags:
+- Private
+---
 # Get-Win32AppBody
 
 ## SYNOPSIS

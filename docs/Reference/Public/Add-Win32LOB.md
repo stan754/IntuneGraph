@@ -1,3 +1,7 @@
+---
+tags:
+- Public
+---
 # Add-Win32Lob
 
 ## SYNOPSIS

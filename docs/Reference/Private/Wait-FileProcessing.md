@@ -1,27 +1,31 @@
-# Invoke-PostRequest
+---
+tags:
+- Private
+---
+# Wait-FileProcessing
 
 ## SYNOPSIS
-This function invokes a post request to the Microsoft Graph API
+This function waits for a file to finish processing a specified stage
 
 ## SYNTAX
 ```powershell
-Invoke-PostRequest [-CollectionPath] <String> [-Body] <String> [<CommonParameters>]
+Wait-FileProcessing [-FileUri] <String> [-Stage] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function invokes a post request to the Microsoft Graph API
+This function waits for a file to finish processing a specified stage
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Invoke-PostRequest -CollectionPath $Uri -Body $Body
+Wait-FileProcessing -FileUri "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId" -Stage "AzureStorageUriRequest"
 ```
 
 ## PARAMETERS
 
-### -CollectionPath
-The path used for the request will be added behind the BaseUrl
+### -FileUri
+The Microsoft Graph API Uri of the file
 
 ```yaml
 Type: String
@@ -35,8 +39,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Body
-The body used for the request
+### -Stage
+The stage to wait for to successfully complete
 
 ```yaml
 Type: String
@@ -57,10 +61,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the response
+### This function outputs the mobileAppContentFile body when the state is success
 
 ## NOTES
-NAME: Invoke-PostRequest
+NAME: Wait-FileProcessing
 
 ## RELATED LINKS
 

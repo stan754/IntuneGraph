@@ -1,27 +1,31 @@
-# Invoke-Request
+---
+tags:
+- Private
+---
+# Add-AzureStorageChunk
 
 ## SYNOPSIS
-This function invokes a request to the Microsoft Graph API
+This function uploads a chunk to an Azure Storage Blob using a Sas Uri
 
 ## SYNTAX
 ```powershell
-Invoke-Request [-Method] <String> [-CollectionPath] <String> [[-Body] <String>] [[-BaseUrl] <String>] [<CommonParameters>]
+Add-AzureStorageChunk [-SasUri] <String> [-Id] <String> [-Body] <Byte[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function invokes a request to the Microsoft Graph API
+This function uploads a chunk to an Azure Storage Blob using a Sas Uri
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Invoke-Request -Method "POST" -CollectionPath $Uri -Body $Body
+Add-AzureStorageChunk -SasUri $SasUri -Id $id -Body $bytes
 ```
 
 ## PARAMETERS
 
-### -Method
-The method to use for the request
+### -SasUri
+The Azure Storage Blob Sas Uri
 
 ```yaml
 Type: String
@@ -35,8 +39,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CollectionPath
-The path used for the request will be added behind the BaseUrl
+### -Id
+The Id of the block that has to be uploaded
 
 ```yaml
 Type: String
@@ -51,31 +55,16 @@ Accept wildcard characters: False
 ```
 
 ### -Body
-The body to be added to the request
+The block to upload in a byte array
 
 ```yaml
-Type: String
+Type: Byte[]
 Parameter Sets: (All)
 Aliases: 
 
-Required: False
+Required: True
 Position: 3
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -BaseUrl
-The base url used for all requests
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: 4
-Default value: https://graph.microsoft.com/beta/deviceAppManagement/
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -87,10 +76,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the response
+### None. This function returns nothing
 
 ## NOTES
-NAME: Invoke-Request
+NAME: Add-AzureStorageChunk
 
 ## RELATED LINKS
 

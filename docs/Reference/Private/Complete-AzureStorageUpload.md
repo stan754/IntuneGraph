@@ -1,27 +1,31 @@
-# Update-AzureStorageUpload
+---
+tags:
+- Private
+---
+# Complete-AzureStorageUpload
 
 ## SYNOPSIS
-This function renews the Azure storage upload to remain active
+This function completes the Azure storage upload by committing the block list
 
 ## SYNTAX
 ```powershell
-Update-AzureStorageUpload [-FileUri] <String> [<CommonParameters>]
+Complete-AzureStorageUpload [-SasUri] <String> [-Ids] <Array> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function renews the Azure storage upload to remain active
+This function completes the Azure storage upload by committing the block list
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Update-AzureStorageUpload -FileUri $azureStorageUri
+Complete-AzureStorageUpload -SasUri $file.azureStorageUri -Ids $ids
 ```
 
 ## PARAMETERS
 
-### -FileUri
-The file Uri to renew
+### -SasUri
+The Sas Uri to commit the block list to
 
 ```yaml
 Type: String
@@ -35,6 +39,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Ids
+An array of Ids for the block list
+
+```yaml
+Type: Array
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -42,10 +61,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### None. This function returns nothing
+### This function returns the response of the completion request
 
 ## NOTES
-NAME: Update-AzureStorageUpload
+NAME: Complete-AzureStorageUpload
 
 ## RELATED LINKS
 

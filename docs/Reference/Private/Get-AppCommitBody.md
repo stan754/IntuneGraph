@@ -1,27 +1,31 @@
-# Test-SourceFile
+---
+tags:
+- Private
+---
+# Get-AppCommitBody
 
 ## SYNOPSIS
-This function tests if a file exists or not
+This function returns a committedContentVersion body
 
 ## SYNTAX
 ```powershell
-Test-SourceFile [-SourceFile] <String> [<CommonParameters>]
+Get-AppCommitBody [-ContentVersionId] <String> [-LobType] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function tests if a file exists or not
+This function returns a committedContentVersion body
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Test-SourceFile -SourceFile Package.intunewin
+Get-AppCommitBody -ContentVersionId $id -LobType "microsoft.graph.win32LobApp"
 ```
 
 ## PARAMETERS
 
-### -SourceFile
-The path to the source file to test
+### -ContentVersionId
+The content version ID
 
 ```yaml
 Type: String
@@ -35,6 +39,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -LobType
+The LOB type
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -42,10 +61,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### None. This function returns nothing
+### This function returns the committedContentVersion body
 
 ## NOTES
-NAME: Test-SourceFile
+NAME: Get-AppCommitBody
 
 ## RELATED LINKS
 

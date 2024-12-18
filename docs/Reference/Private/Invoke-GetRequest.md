@@ -1,27 +1,31 @@
-# Complete-AzureStorageUpload
+---
+tags:
+- Private
+---
+# Invoke-GetRequest
 
 ## SYNOPSIS
-This function completes the Azure storage upload by committing the block list
+This function invokes a get request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Complete-AzureStorageUpload [-SasUri] <String> [-Ids] <Array> [<CommonParameters>]
+Invoke-GetRequest [-CollectionPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function completes the Azure storage upload by committing the block list
+This function invokes a get request to the Microsoft Graph API
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Complete-AzureStorageUpload -SasUri $file.azureStorageUri -Ids $ids
+Invoke-GetRequest -CollectionPath $Uri
 ```
 
 ## PARAMETERS
 
-### -SasUri
-The Sas Uri to commit the block list to
+### -CollectionPath
+The path used for the request will be added behind the BaseUrl
 
 ```yaml
 Type: String
@@ -35,21 +39,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Ids
-An array of Ids for the block list
-
-```yaml
-Type: Array
-Parameter Sets: (All)
-Aliases: 
-
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -57,10 +46,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the response of the completion request
+### This function returns the response
 
 ## NOTES
-NAME: Complete-AzureStorageUpload
+NAME: Invoke-GetRequest
 
 ## RELATED LINKS
 

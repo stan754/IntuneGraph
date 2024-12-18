@@ -1,3 +1,7 @@
+---
+tags:
+- Public
+---
 # Get-DefaultReturnCodes
 
 ## SYNOPSIS

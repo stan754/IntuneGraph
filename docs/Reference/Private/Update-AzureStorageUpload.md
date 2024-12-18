@@ -1,27 +1,31 @@
-# Invoke-GetRequest
+---
+tags:
+- Private
+---
+# Update-AzureStorageUpload
 
 ## SYNOPSIS
-This function invokes a get request to the Microsoft Graph API
+This function renews the Azure storage upload to remain active
 
 ## SYNTAX
 ```powershell
-Invoke-GetRequest [-CollectionPath] <String> [<CommonParameters>]
+Update-AzureStorageUpload [-FileUri] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function invokes a get request to the Microsoft Graph API
+This function renews the Azure storage upload to remain active
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Invoke-GetRequest -CollectionPath $Uri
+Update-AzureStorageUpload -FileUri $azureStorageUri
 ```
 
 ## PARAMETERS
 
-### -CollectionPath
-The path used for the request will be added behind the BaseUrl
+### -FileUri
+The file Uri to renew
 
 ```yaml
 Type: String
@@ -42,10 +46,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the response
+### None. This function returns nothing
 
 ## NOTES
-NAME: Invoke-GetRequest
+NAME: Update-AzureStorageUpload
 
 ## RELATED LINKS
 

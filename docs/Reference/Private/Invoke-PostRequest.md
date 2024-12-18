@@ -1,27 +1,31 @@
-# Get-IntuneWinXML
+---
+tags:
+- Private
+---
+# Invoke-PostRequest
 
 ## SYNOPSIS
-This function returns the detection.xml from inside the outer intunewin archive
+This function invokes a post request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Get-IntuneWinXML [-SourceFile] <String> [[-FileName] <String>] [<CommonParameters>]
+Invoke-PostRequest [-CollectionPath] <String> [-Body] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function returns the detection.xml from inside the outer intunewin archive
+This function invokes a post request to the Microsoft Graph API
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Get-IntuneWinXML -SourceFile Package.intunewin -FileName 'detection.xml'
+Invoke-PostRequest -CollectionPath $Uri -Body $Body
 ```
 
 ## PARAMETERS
 
-### -SourceFile
-The source intunewin file (outer archive not the encrypted one)
+### -CollectionPath
+The path used for the request will be added behind the BaseUrl
 
 ```yaml
 Type: String
@@ -35,17 +39,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileName
-The filename for the xml to read
+### -Body
+The body used for the request
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: False
+Required: True
 Position: 2
-Default value: detection.xml
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -57,10 +61,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the detection.xml from the intunewin archive
+### This function returns the response
 
 ## NOTES
-NAME: Get-IntuneWinXML
+NAME: Invoke-PostRequest
 
 ## RELATED LINKS
 

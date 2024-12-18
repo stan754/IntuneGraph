@@ -1,0 +1,80 @@
+site_name: IntuneGraph
+site_url: https://stan754.github.io/IntuneGraph
+repo_url: https://github.com/stan754/IntuneGraph
+repo_name: stan754/IntuneGraph
+edit_uri: edit/main/docs/
+extra:
+  powershell_module_name: IntuneGraph
+  powershell_repo_url: https://github.com/stan754/IntuneGraph
+  tags:
+    Private: private
+    Public: public
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/stan754
+
+copyright: Copyright &copy; Stan754
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.action.edit
+    - content.action.view
+    - navigation.top
+    - navigation.tabs
+    - navigation.expand
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  - macros
+  - tags
+  - social
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type: iso_date
+      fallback_to_build_date: true
+  - git-authors:
+      show_email_address: false
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true

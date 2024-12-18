@@ -1,43 +1,31 @@
-# New-ReturnCode
+---
+tags:
+- Private
+---
+# Get-IntuneWinXML
 
 ## SYNOPSIS
-This function is used to create new returncodes for a Win32 Application in Microsoft Intune
+This function returns the detection.xml from inside the outer intunewin archive
 
 ## SYNTAX
 ```powershell
-New-ReturnCode [-ReturnCode] <Int32> [-Type] <String> [<CommonParameters>]
+Get-IntuneWinXML [-SourceFile] <String> [[-FileName] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function is used to create new returncodes for a Win32 Application in Microsoft Intune
+This function returns the detection.xml from inside the outer intunewin archive
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-New-ReturnCode -ReturnCode 1707 -Type 'success'
-# Returns the default returncodes from Microsoft Intune
+Get-IntuneWinXML -SourceFile Package.intunewin -FileName 'detection.xml'
 ```
 
 ## PARAMETERS
 
-### -ReturnCode
-The return code
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: 
-
-Required: True
-Position: 1
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Type
-The type of return code (success, softreboot, hardreboot, retry)
+### -SourceFile
+The source intunewin file (outer archive not the encrypted one)
 
 ```yaml
 Type: String
@@ -45,8 +33,23 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FileName
+The filename for the xml to read
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 2
+Default value: detection.xml
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -58,10 +61,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function outputs a new return code for a Win32 Application in Microsoft Intune
+### This function returns the detection.xml from the intunewin archive
 
 ## NOTES
-NAME: New-ReturnCode
+NAME: Get-IntuneWinXML
 
 ## RELATED LINKS
 

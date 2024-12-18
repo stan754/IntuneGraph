@@ -1,27 +1,31 @@
-# Add-FileToAzureStorage
+---
+tags:
+- Private
+---
+# Invoke-Request
 
 ## SYNOPSIS
-This function uploads a file to an Azure Storage Blob using a Sas Uri
+This function invokes a request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Add-FileToAzureStorage [-SasUri] <String> [-FilePath] <String> [-FileUri] <String> [[-AzureStorageUploadChunkSizeInMb] <Int32>] [<CommonParameters>]
+Invoke-Request [-Method] <String> [-CollectionPath] <String> [[-Body] <String>] [[-BaseUrl] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function uploads a file to an Azure Storage Blob using a Sas Uri
+This function invokes a request to the Microsoft Graph API
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Add-FileToAzureStorage -SasUri $file.azureStorageUri -FilePath IntunePackage.intunewin -FileUri $fileUri
+Invoke-Request -Method "POST" -CollectionPath $Uri -Body $Body
 ```
 
 ## PARAMETERS
 
-### -SasUri
-The Azure Storage Blob Sas Uri
+### -Method
+The method to use for the request
 
 ```yaml
 Type: String
@@ -35,8 +39,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FilePath
-The path to the file to upload
+### -CollectionPath
+The path used for the request will be added behind the BaseUrl
 
 ```yaml
 Type: String
@@ -50,32 +54,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileUri
-The intune file Uri
+### -Body
+The body to be added to the request
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
+Required: False
 Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AzureStorageUploadChunkSizeInMb
-The size of the chunks to send to the Azure Storage Blob
+### -BaseUrl
+The base url used for all requests
 
 ```yaml
-Type: Int32
+Type: String
 Parameter Sets: (All)
 Aliases: 
 
 Required: False
 Position: 4
-Default value: 6
+Default value: https://graph.microsoft.com/beta/deviceAppManagement/
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -87,10 +91,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### None. This function returns nothing
+### This function returns the response
 
 ## NOTES
-NAME: Add-FileToAzureStorage
+NAME: Invoke-Request
 
 ## RELATED LINKS
 

@@ -1,3 +1,7 @@
+---
+tags:
+- Private
+---
 # New-TemporaryFolder
 
 ## SYNOPSIS

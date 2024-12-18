@@ -102,11 +102,23 @@ function New-MarkdownDoc {
   param (
     [Parameter(Mandatory = $true)]
     [string] $CommandName,
+    [Parameter(Mandatory = $false)]
+    [string[]] $Tags,
     [Parameter(Mandatory = $true)]
     [string] $OutputFolder
   )
   $Help = Get-HelpObject -CommandName $CommandName
   $output = @()
+
+  if ($Tags) {
+    $output += "---"
+    $output += "tags:"
+    $Tags | ForEach-Object {
+      $output += "- $_"
+    }
+    $output += "---"
+  }
+
   $output += "# $($Help.Name)"
   $output += ""
 
@@ -183,14 +195,16 @@ function New-MarkdownDoc {
   $output | Out-File "$OutputFolder\$CommandName.md"
 }
 
-if (-not (Test-Path "$PSScriptRoot\..\docs")) {
-  $null = New-Item "$PSScriptRoot\..\docs" -ItemType Directory
+$ReferenceDocsPath = "$PSScriptRoot\..\docs\Reference"
+
+if (-not (Test-Path "$ReferenceDocsPath")) {
+  $null = New-Item "$ReferenceDocsPath" -ItemType Directory -Force
 }
-if (-not (Test-Path "$PSScriptRoot\..\docs\Public")) {
-  $null = New-Item "$PSScriptRoot\..\docs\Public" -ItemType Directory
+if (-not (Test-Path "$ReferenceDocsPath\Public")) {
+  $null = New-Item "$ReferenceDocsPath\Public" -ItemType Directory
 }
-if (-not (Test-Path "$PSScriptRoot\..\docs\Private")) {
-  $null = New-Item "$PSScriptRoot\..\docs\Private" -ItemType Directory
+if (-not (Test-Path "$ReferenceDocsPath\Private")) {
+  $null = New-Item "$ReferenceDocsPath\Private" -ItemType Directory
 }
 
 $Public = @( Get-ChildItem -Path $PSScriptRoot\..\IntuneGraph\Public\*.ps1 -Recurse -ErrorAction SilentlyContinue )
@@ -206,9 +220,9 @@ Foreach ($import in @($Public + $Private)) {
 }
 
 $Private | ForEach-Object {
-  New-MarkdownDoc -CommandName $_.BaseName -OutputFolder "$PSScriptRoot\..\docs\Private"
+  New-MarkdownDoc -CommandName $_.BaseName -OutputFolder "$ReferenceDocsPath\Private" -Tags "Private"
 }
 
 $Public | ForEach-Object {
-  New-MarkdownDoc -CommandName $_.BaseName -OutputFolder "$PSScriptRoot\..\docs\Public"
+  New-MarkdownDoc -CommandName $_.BaseName -OutputFolder "$ReferenceDocsPath\Public" -Tags "Public"
 }

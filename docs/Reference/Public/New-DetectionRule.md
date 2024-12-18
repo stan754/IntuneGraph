@@ -1,3 +1,7 @@
+---
+tags:
+- Public
+---
 # New-DetectionRule
 
 ## SYNOPSIS

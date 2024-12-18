@@ -1,21 +1,25 @@
-# Add-AzureStorageChunk
+---
+tags:
+- Private
+---
+# Add-FileToAzureStorage
 
 ## SYNOPSIS
-This function uploads a chunk to an Azure Storage Blob using a Sas Uri
+This function uploads a file to an Azure Storage Blob using a Sas Uri
 
 ## SYNTAX
 ```powershell
-Add-AzureStorageChunk [-SasUri] <String> [-Id] <String> [-Body] <Byte[]> [<CommonParameters>]
+Add-FileToAzureStorage [-SasUri] <String> [-FilePath] <String> [-FileUri] <String> [[-AzureStorageUploadChunkSizeInMb] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function uploads a chunk to an Azure Storage Blob using a Sas Uri
+This function uploads a file to an Azure Storage Blob using a Sas Uri
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Add-AzureStorageChunk -SasUri $SasUri -Id $id -Body $bytes
+Add-FileToAzureStorage -SasUri $file.azureStorageUri -FilePath IntunePackage.intunewin -FileUri $fileUri
 ```
 
 ## PARAMETERS
@@ -35,8 +39,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
-The Id of the block that has to be uploaded
+### -FilePath
+The path to the file to upload
 
 ```yaml
 Type: String
@@ -50,17 +54,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Body
-The block to upload in a byte array
+### -FileUri
+The intune file Uri
 
 ```yaml
-Type: Byte[]
+Type: String
 Parameter Sets: (All)
 Aliases: 
 
 Required: True
 Position: 3
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AzureStorageUploadChunkSizeInMb
+The size of the chunks to send to the Azure Storage Blob
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 4
+Default value: 6
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -75,7 +94,7 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. This function returns nothing
 
 ## NOTES
-NAME: Add-AzureStorageChunk
+NAME: Add-FileToAzureStorage
 
 ## RELATED LINKS
 

@@ -1,42 +1,47 @@
-# Invoke-PatchRequest
+---
+tags:
+- Public
+---
+# New-ReturnCode
 
 ## SYNOPSIS
-This function invokes a patch request to the Microsoft Graph API
+This function is used to create new returncodes for a Win32 Application in Microsoft Intune
 
 ## SYNTAX
 ```powershell
-Invoke-PatchRequest [-CollectionPath] <String> [-Body] <String> [<CommonParameters>]
+New-ReturnCode [-ReturnCode] <Int32> [-Type] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This function invokes a patch request to the Microsoft Graph API
+This function is used to create new returncodes for a Win32 Application in Microsoft Intune
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```powershell
-Invoke-PatchRequest -CollectionPath $Uri -Body $Body
+New-ReturnCode -ReturnCode 1707 -Type 'success'
+# Returns the default returncodes from Microsoft Intune
 ```
 
 ## PARAMETERS
 
-### -CollectionPath
-The path used for the request will be added behind the BaseUrl
+### -ReturnCode
+The return code
 
 ```yaml
-Type: String
+Type: Int32
 Parameter Sets: (All)
 Aliases: 
 
 Required: True
 Position: 1
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Body
-The body used for the request
+### -Type
+The type of return code (success, softreboot, hardreboot, retry)
 
 ```yaml
 Type: String
@@ -57,10 +62,10 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. No objects can be piped into this function
 
 ## OUTPUTS
-### This function returns the response
+### This function outputs a new return code for a Win32 Application in Microsoft Intune
 
 ## NOTES
-NAME: Invoke-PatchRequest
+NAME: New-ReturnCode
 
 ## RELATED LINKS
 
