@@ -1,41 +1,17 @@
----
-external help file: IntuneGraph-help.xml
-Module Name: IntuneGraph
-online version:
-schema: 2.0.0
----
-
 # New-DetectionRule
 
 ## SYNOPSIS
 This function is used to create new detection rules for a Win32 Application in Microsoft Intune
 
 ## SYNTAX
+```powershell
+New-DetectionRule [-PowerShell] -ScriptFile <String> [-EnforceSignatureCheck <Boolean>] [-RunAs32Bit <Boolean>] [<CommonParameters>]
 
-### PowerShell
-```
-New-DetectionRule [-PowerShell] -ScriptFile <String> [-EnforceSignatureCheck <Boolean>] [-RunAs32Bit <Boolean>]
- [<CommonParameters>]
-```
+New-DetectionRule [-MSI] -MSIProductCode <String> [-MSIProductVersionOperator <String>] [-MSIProductVersion <String>] [<CommonParameters>]
 
-### MSI
-```
-New-DetectionRule [-MSI] -MSIProductCode <String> [-MSIProductVersionOperator <String>]
- [-MSIProductVersion <String>] [<CommonParameters>]
-```
+New-DetectionRule [-File] -Path <String> -FileOrFolderName <String> -FileDetectionType <String> [-FileDetectionOperator <String>] [-FileDetectionValue <String>] [-Check32BitOn64System <Boolean>] [<CommonParameters>]
 
-### File
-```
-New-DetectionRule [-File] -Path <String> -FileOrFolderName <String> -FileDetectionType <String>
- [-FileDetectionOperator <String>] [-FileDetectionValue <String>] [-Check32BitOn64System <Boolean>]
- [<CommonParameters>]
-```
-
-### Registry
-```
-New-DetectionRule [-Registry] -RegistryKeyPath <String> -RegistryDetectionType <String>
- [-RegistryDetectionOperator <String>] [-RegistryValueName <String>] [-RegistryDetectionValue <String>]
- [-Check32BitRegOn64System <String>] [<CommonParameters>]
+New-DetectionRule [-Registry] -RegistryKeyPath <String> -RegistryDetectionType <String> [-RegistryDetectionOperator <String>] [-RegistryValueName <String>] [-RegistryDetectionValue <String>] [-Check32BitRegOn64System <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,22 +21,22 @@ The options are Powershell, MSI, File or, Registry
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 New-DetectionRule -PowerShell -ScriptFile detection.ps1 -EnforceSignatureCheck $false -RunAs32Bit $false
 ```
 
 ### EXAMPLE 2
-```
+```powershell
 New-DetectionRule -MSI -MSIProductCode
 ```
 
 ### EXAMPLE 3
-```
+```powershell
 New-DetectionRule -File -Path 'C:\Program Files\' -FileOrFolderName 'FolderToDetect' -FileDetectionType exists -Check32BitOn64System False
 ```
 
 ### EXAMPLE 4
-```
+```powershell
 New-DetectionRule -Registry -RegistryKeyPath -RegistryDetectionType string -RegistryValueName 'value' -Check32BitRegOn64System False
 ```
 
@@ -72,7 +48,7 @@ Switch to select PowerShell detection rule
 ```yaml
 Type: SwitchParameter
 Parameter Sets: PowerShell
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -87,7 +63,7 @@ Switch to select MSI detection rule
 ```yaml
 Type: SwitchParameter
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -102,7 +78,7 @@ Switch to select File detection rule
 ```yaml
 Type: SwitchParameter
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -117,7 +93,7 @@ Switch to select Registry detection rule
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -132,7 +108,7 @@ The path to the PowerShell detection script file
 ```yaml
 Type: String
 Parameter Sets: PowerShell
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -147,7 +123,7 @@ A value indicating whether signature check is enforced
 ```yaml
 Type: Boolean
 Parameter Sets: PowerShell
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -162,7 +138,7 @@ A value indicating whether this script should run as 32-bit
 ```yaml
 Type: Boolean
 Parameter Sets: PowerShell
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -177,7 +153,7 @@ The product code of Win32 Line of Business (LoB) app
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -192,11 +168,11 @@ The operator to detect product version
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
-Default value: NotConfigured
+Default value: notConfigured
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -207,7 +183,7 @@ The product version of Win32 Line of Business (LoB) app
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -222,7 +198,7 @@ The file or folder path to detect Win32 Line of Business (LoB) app
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -237,7 +213,7 @@ The file or folder name to detect Win32 Line of Business (LoB) app
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -252,7 +228,7 @@ The file system detection type
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -267,11 +243,11 @@ The operator for file or folder detection
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
-Default value: NotConfigured
+Default value: notConfigured
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -282,7 +258,7 @@ The file or folder detection value
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -297,7 +273,7 @@ A value indicating whether this file or folder is for checking 32-bit app on 64-
 ```yaml
 Type: Boolean
 Parameter Sets: File
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -312,7 +288,7 @@ The registry key path to detect Win32 Line of Business (LoB) app
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -327,7 +303,7 @@ The registry data detection type
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -342,11 +318,11 @@ The operator for registry data detection
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
-Default value: NotConfigured
+Default value: notConfigured
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -357,7 +333,7 @@ The registry value name
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -372,7 +348,7 @@ The registry detection value
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -387,7 +363,7 @@ A value indicating whether this registry path is for checking 32-bit app on 64-b
 ```yaml
 Type: String
 Parameter Sets: Registry
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -397,15 +373,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function outputs a new detection rule for a Win32 Application in Microsoft Intune
+
 ## NOTES
 NAME: New-DetectionRule
 
 ## RELATED LINKS
+

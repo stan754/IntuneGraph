@@ -1,21 +1,11 @@
----
-external help file: IntuneGraph-help.xml
-Module Name: IntuneGraph
-online version:
-schema: 2.0.0
----
-
 # Add-Win32Lob
 
 ## SYNOPSIS
 This function is used to upload a Win32 Application to Microsoft Intune
 
 ## SYNTAX
-
-```
-Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String>
- [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>]
- [[-installExperience] <String>] [-Sleep <Int32>] [<CommonParameters>]
+```powershell
+Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-installExperience] <String>] [-Sleep <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,7 +14,7 @@ This function is used to upload a Win32 Application to Microsoft Intune using th
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Add-Win32Lob -SourceFile "C:\Packages\package.intunewin" `
     -Publisher "Microsoft" `
     -Description "Package description" `
@@ -34,7 +24,7 @@ Add-Win32Lob -SourceFile "C:\Packages\package.intunewin" `
 ```
 
 ### EXAMPLE 2
-```
+```powershell
 Add-Win32Lob -SourceFile "C:\Packages\package.intunewin" `
     -Publisher "Microsoft" `
     -Description "Package description" `
@@ -53,7 +43,7 @@ The intunewin sourcefile created with the IntuneWinAppUtil.exe
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -69,7 +59,7 @@ This parameter is optional and will be filled with information from the detectio
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -84,7 +74,7 @@ The Publisher for the application in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 3
@@ -99,7 +89,7 @@ The Description for the application in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 4
@@ -114,7 +104,7 @@ An array of detection rules for the application needs a minimum of 1
 ```yaml
 Type: Array
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 5
@@ -130,7 +120,7 @@ To use the default returncodes you can get these with Get-DefaultReturnCodes
 ```yaml
 Type: Array
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 6
@@ -145,7 +135,7 @@ The install command to install the application
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 7
@@ -160,7 +150,7 @@ The uninstall command to uninstall the application
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 8
@@ -176,11 +166,11 @@ By default this is set to system
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 9
-Default value: System
+Default value: system
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -192,7 +182,7 @@ By default this is 30 seconds
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -202,15 +192,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function outputs the application body received from the Graph API as an object
+
 ## NOTES
 NAME: Add-Win32LOB
 
 ## RELATED LINKS
+

@@ -4,9 +4,8 @@
 This function creates a new temporary folder just like New-TemporaryFile
 
 ## SYNTAX
-
-```
-New-TemporaryFolder
+```powershell
+New-TemporaryFolder [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -15,19 +14,18 @@ This function creates a new temporary folder just like New-TemporaryFile
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 New-TemporaryFolder
 ```
 
-## PARAMETERS
-
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### A new folder in the temporary directory
+
 ## NOTES
 NAME: New-TemporaryFolder
 
 ## RELATED LINKS
+

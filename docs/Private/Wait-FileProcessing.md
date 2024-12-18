@@ -4,8 +4,7 @@
 This function waits for a file to finish processing a specified stage
 
 ## SYNTAX
-
-```
+```powershell
 Wait-FileProcessing [-FileUri] <String> [-Stage] <String> [<CommonParameters>]
 ```
 
@@ -15,7 +14,7 @@ This function waits for a file to finish processing a specified stage
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Wait-FileProcessing -FileUri "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId" -Stage "AzureStorageUriRequest"
 ```
 
@@ -27,7 +26,7 @@ The Microsoft Graph API Uri of the file
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -42,7 +41,7 @@ The stage to wait for to successfully complete
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -52,15 +51,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function outputs the mobileAppContentFile body when the state is success
+
 ## NOTES
 NAME: Wait-FileProcessing
 
 ## RELATED LINKS
+

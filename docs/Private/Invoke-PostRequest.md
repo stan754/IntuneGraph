@@ -4,8 +4,7 @@
 This function invokes a post request to the Microsoft Graph API
 
 ## SYNTAX
-
-```
+```powershell
 Invoke-PostRequest [-CollectionPath] <String> [-Body] <String> [<CommonParameters>]
 ```
 
@@ -15,7 +14,7 @@ This function invokes a post request to the Microsoft Graph API
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Invoke-PostRequest -CollectionPath $Uri -Body $Body
 ```
 
@@ -27,7 +26,7 @@ The path used for the request will be added behind the BaseUrl
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -42,7 +41,7 @@ The body used for the request
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -52,15 +51,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function returns the response
+
 ## NOTES
 NAME: Invoke-PostRequest
 
 ## RELATED LINKS
+

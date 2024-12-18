@@ -1,18 +1,10 @@
----
-external help file: IntuneGraph-help.xml
-Module Name: IntuneGraph
-online version:
-schema: 2.0.0
----
-
 # New-ReturnCode
 
 ## SYNOPSIS
 This function is used to create new returncodes for a Win32 Application in Microsoft Intune
 
 ## SYNTAX
-
-```
+```powershell
 New-ReturnCode [-ReturnCode] <Int32> [-Type] <String> [<CommonParameters>]
 ```
 
@@ -22,7 +14,7 @@ This function is used to create new returncodes for a Win32 Application in Micro
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 New-ReturnCode -ReturnCode 1707 -Type 'success'
 # Returns the default returncodes from Microsoft Intune
 ```
@@ -35,7 +27,7 @@ The return code
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -50,7 +42,7 @@ The type of return code (success, softreboot, hardreboot, retry)
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -60,15 +52,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function outputs a new return code for a Win32 Application in Microsoft Intune
+
 ## NOTES
 NAME: New-ReturnCode
 
 ## RELATED LINKS
+

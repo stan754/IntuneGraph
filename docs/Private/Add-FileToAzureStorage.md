@@ -4,10 +4,8 @@
 This function uploads a file to an Azure Storage Blob using a Sas Uri
 
 ## SYNTAX
-
-```
-Add-FileToAzureStorage [-SasUri] <String> [-FilePath] <String> [-FileUri] <String>
- [[-AzureStorageUploadChunkSizeInMb] <Int32>] [<CommonParameters>]
+```powershell
+Add-FileToAzureStorage [-SasUri] <String> [-FilePath] <String> [-FileUri] <String> [[-AzureStorageUploadChunkSizeInMb] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -16,7 +14,7 @@ This function uploads a file to an Azure Storage Blob using a Sas Uri
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Add-FileToAzureStorage -SasUri $file.azureStorageUri -FilePath IntunePackage.intunewin -FileUri $fileUri
 ```
 
@@ -28,7 +26,7 @@ The Azure Storage Blob Sas Uri
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -43,7 +41,7 @@ The path to the file to upload
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -58,7 +56,7 @@ The intune file Uri
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 3
@@ -73,7 +71,7 @@ The size of the chunks to send to the Azure Storage Blob
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 4
@@ -83,15 +81,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### None. This function returns nothing
+
 ## NOTES
 NAME: Add-FileToAzureStorage
 
 ## RELATED LINKS
+

@@ -4,10 +4,8 @@
 This function returns the detection.xml from inside the outer intunewin archive
 
 ## SYNTAX
-
-```
-Get-AppFileBody [-Name] <String> [-Size] <Int64> [-SizeEncrypted] <Int64> [[-Manifest] <Object>]
- [<CommonParameters>]
+```powershell
+Get-AppFileBody [-Name] <String> [-Size] <Int64> [-SizeEncrypted] <Int64> [[-Manifest] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -16,7 +14,7 @@ This function returns the detection.xml from inside the outer intunewin archive
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Get-AppFileBody -Name IntunePackage.intunewin -Size 522 -SizeEncrypted (Get-Item "package.intunewin").Length
 ```
 
@@ -28,7 +26,7 @@ The file name
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -43,7 +41,7 @@ The size of the file prior to encryption
 ```yaml
 Type: Int64
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -58,7 +56,7 @@ The size of the file after encryption
 ```yaml
 Type: Int64
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 3
@@ -73,7 +71,7 @@ The manifest information
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 4
@@ -83,15 +81,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function returns a mobileAppContentFile body
+
 ## NOTES
 NAME: Get-AppFileBody
 
 ## RELATED LINKS
+

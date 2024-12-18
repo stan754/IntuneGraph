@@ -4,8 +4,7 @@
 This function renews the Azure storage upload to remain active
 
 ## SYNTAX
-
-```
+```powershell
 Update-AzureStorageUpload [-FileUri] <String> [<CommonParameters>]
 ```
 
@@ -15,7 +14,7 @@ This function renews the Azure storage upload to remain active
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Update-AzureStorageUpload -FileUri $azureStorageUri
 ```
 
@@ -27,7 +26,7 @@ The file Uri to renew
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 1
@@ -37,15 +36,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### None. This function returns nothing
+
 ## NOTES
 NAME: Update-AzureStorageUpload
 
 ## RELATED LINKS
+

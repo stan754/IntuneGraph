@@ -4,20 +4,10 @@
 This function returns a Win32 application body for the Microsoft Graph API
 
 ## SYNTAX
+```powershell
+Get-Win32AppBody [-MSI] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallExperience <String> -MSIPackageType <String> -MSIProductCode <String> [-MSIProductName <String>] -MSIProductVersion <String> [-MSIPublisher <String>] -MSIRequiresReboot <Boolean> -MSIUpgradeCode <String> [<CommonParameters>]
 
-### MSI
-```
-Get-Win32AppBody [-MSI] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String>
- -SetupFileName <String> -InstallExperience <String> -MSIPackageType <String> -MSIProductCode <String>
- [-MSIProductName <String>] -MSIProductVersion <String> [-MSIPublisher <String>] -MSIRequiresReboot <Boolean>
- -MSIUpgradeCode <String> [<CommonParameters>]
-```
-
-### EXE
-```
-Get-Win32AppBody [-EXE] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String>
- -SetupFileName <String> -InstallExperience <String> -InstallCommandLine <String>
- -UninstallCommandLine <String> [<CommonParameters>]
+Get-Win32AppBody [-EXE] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallExperience <String> -InstallCommandLine <String> -UninstallCommandLine <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,7 +16,7 @@ This function returns a Win32 application body for the Microsoft Graph API
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Get-Win32AppBody `
     -MSI `
     -DisplayName "$DisplayName" `
@@ -45,7 +35,7 @@ Get-Win32AppBody `
 ```
 
 ### EXAMPLE 2
-```
+```powershell
 Get-Win32AppBody `
     -EXE `
     -DisplayName "$DisplayName" `
@@ -66,7 +56,7 @@ Switch to select MSI
 ```yaml
 Type: SwitchParameter
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -81,7 +71,7 @@ Switch to select EXE
 ```yaml
 Type: SwitchParameter
 Parameter Sets: EXE
-Aliases:
+Aliases: 
 
 Required: True
 Position: 2
@@ -96,7 +86,7 @@ The display name to show in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -111,7 +101,7 @@ The publisher name to show in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -126,7 +116,7 @@ The description to show in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -141,7 +131,7 @@ The file name of the intunewin to show in Microsoft Intune
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -156,7 +146,7 @@ The setup file name
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -171,7 +161,7 @@ The install scope of the application
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -186,7 +176,7 @@ The install command for EXE
 ```yaml
 Type: String
 Parameter Sets: EXE
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -201,7 +191,7 @@ The uninstall command for EXE
 ```yaml
 Type: String
 Parameter Sets: EXE
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -216,7 +206,7 @@ The MSI package type
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -231,7 +221,7 @@ The MSI product code
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -246,7 +236,7 @@ The MSI product name
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -261,7 +251,7 @@ The MSI product version
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -276,7 +266,7 @@ The MSI publisher
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: False
 Position: Named
@@ -291,7 +281,7 @@ Whether the MSI app requires the machine to reboot to complete installation
 ```yaml
 Type: Boolean
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -306,7 +296,7 @@ The MSI upgrade code
 ```yaml
 Type: String
 Parameter Sets: MSI
-Aliases:
+Aliases: 
 
 Required: True
 Position: Named
@@ -316,15 +306,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -WarningAction, -InformationAction, -ProgressAction, -ErrorVariable, -WarningVariable, -InformationVariable, -OutVariable, -OutBuffer, and -PipelineVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
 ### None. No objects can be piped into this function
-## OUTPUTS
 
+## OUTPUTS
 ### This function returns the application body
+
 ## NOTES
 NAME: Get-Win32AppBody
 
 ## RELATED LINKS
+
