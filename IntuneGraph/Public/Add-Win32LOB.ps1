@@ -67,7 +67,7 @@ function Add-Win32Lob() {
         # By default this is set to system
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
-        [string] $installExperience = "system",
+        [string] $InstallExperience = "system",
         # The time the function sleeps after creating and uploading the application to make sure it's available
         # By default this is 30 seconds
         [parameter(Mandatory = $false)]
@@ -118,7 +118,7 @@ function Add-Win32Lob() {
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $installExperience `
+                -InstallExperience $InstallExperience `
                 -MSIPackageType $MsiPackageType `
                 -MSIProductCode $MsiProductCode `
                 -MSIProductName $DisplayName `
@@ -135,7 +135,7 @@ function Add-Win32Lob() {
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $installExperience `
+                -InstallExperience $InstallExperience `
                 -InstallCommandLine $InstallCmdLine `
                 -UninstallCommandLine $uninstallcmdline
         }
