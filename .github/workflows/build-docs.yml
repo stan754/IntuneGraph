@@ -21,8 +21,13 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
       
+      - name: Check if there are changes to commit
+        run: |
+          git diff --exit-code docs/ || echo "Changes detected in docs/"
+          
       - name: Commit and push changes
         run: |
           git add docs/
-          git commit -m "Update generated documentation"
+          git diff --cached --quiet || git commit -m "Update generated documentation"
           git push
+        if: ${{ steps.check_changes.outputs.diff != '' }}
