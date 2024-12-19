@@ -25,7 +25,7 @@ jobs:
         id: check_changes
         run: |
           git add docs/
-          git diff --exit-code docs/ || echo "Changes detected in docs/"
+          git diff --quiet docs/ || echo "changes_detected=true" >> $GITHUB_ENV
           
       - name: Commit and push changes
         run: |
