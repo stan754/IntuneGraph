@@ -20,16 +20,11 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-      
-      - name: Check if there are changes to commit
-        id: check_changes
-        run: |
-          git add docs/
-          git diff --quiet docs/ || echo "changes_detected=true" >> $GITHUB_ENV
           
       - name: Commit and push changes
         run: |
-          git add docs/
-          git diff --cached --quiet || git commit -m "Update generated documentation"
+          git add docs
+          git commit -m "Update generated documentation"
+          git fetch origin
+          git rebase --strategy-option=theirs origin/main
           git push
-        if: ${{ steps.check_changes.outputs.diff != '' }}
