@@ -24,7 +24,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git add docs
-          git commit -m "Update generated documentation"
+          git commit -m "Update generated documentation" || echo "Nothing to push"
           git fetch origin
           git rebase --strategy-option=theirs origin/main
           git push
