@@ -197,7 +197,7 @@ function New-MarkdownDoc {
 
 $ReferenceDocsPath = "$PSScriptRoot\..\docs\Reference"
 
-Remove-Item $ReferenceDocsPath -Force
+Remove-Item $ReferenceDocsPath -Force -Recurse
 
 if (-not (Test-Path "$ReferenceDocsPath")) {
   $null = New-Item "$ReferenceDocsPath" -ItemType Directory -Force
