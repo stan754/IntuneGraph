@@ -15,13 +15,13 @@ function Get-ReturnCode {
         NAME: Get-ReturnCode
     #>
     param (
-      # The return code
-      [parameter(Mandatory = $true)]
-      [int] $ReturnCode,
-      # The type of return code (success, softreboot, hardreboot, retry)
-      [parameter(Mandatory = $true)]
-      [ValidateSet('success', 'softReboot', 'hardReboot', 'retry')]
-      [string] $Type
+        # The return code
+        [parameter(Mandatory = $true)]
+        [int] $ReturnCode,
+        # The type of return code (success, softreboot, hardreboot, retry)
+        [parameter(Mandatory = $true)]
+        [ValidateSet('success', 'softReboot', 'hardReboot', 'retry')]
+        [string] $Type
     )
 
     @{"returnCode" = $ReturnCode; "type" = "$Type" }

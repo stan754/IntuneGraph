@@ -1,27 +1,27 @@
 ﻿function Invoke-AzureStorageUploadRenew {
-  <#
-  .SYNOPSIS
-      This function renews the Azure storage upload to remain active
-  .DESCRIPTION
-      This function renews the Azure storage upload to remain active
-  .EXAMPLE
-      Invoke-AzureStorageUploadRenew -FileUri $azureStorageUri
-  .INPUTS
-      None. No objects can be piped into this function
-  .OUTPUTS
-      None. This function returns nothing
-  .NOTES
-      NAME: Invoke-AzureStorageUploadRenew
-  #>
-  param(
-    # The file Uri to renew
-    [Parameter(Mandatory = $true)]
-    [string] $FileUri
-  )
+    <#
+    .SYNOPSIS
+        This function renews the Azure storage upload to remain active
+    .DESCRIPTION
+        This function renews the Azure storage upload to remain active
+    .EXAMPLE
+        Invoke-AzureStorageUploadRenew -FileUri $azureStorageUri
+    .INPUTS
+        None. No objects can be piped into this function
+    .OUTPUTS
+        None. This function returns nothing
+    .NOTES
+        NAME: Invoke-AzureStorageUploadRenew
+    #>
+    param(
+        # The file Uri to renew
+        [Parameter(Mandatory = $true)]
+        [string] $FileUri
+    )
 
-  $renewalUri = "$FileUri/renewUpload"
-  $actionBody = ""
-  $null = Invoke-PostRequest $renewalUri $actionBody
+    $renewalUri = "$FileUri/renewUpload"
+    $actionBody = ""
+    $null = Invoke-PostRequest $renewalUri $actionBody
 
-  $null = Wait-FileProcessing $FileUri "AzureStorageUriRenewal"
+    $null = Wait-FileProcessing $FileUri "AzureStorageUriRenewal"
 }

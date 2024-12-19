@@ -53,8 +53,8 @@
             $length = [Math]::Min($chunkSizeInBytes, $fileSize - $start)
             $bytes = $reader.ReadBytes($length)
 
-            Write-Progress -Activity "Uploading File to Azure Storage" -status "Uploading chunk $currentChunk of $chunks" `
-                -percentComplete ($currentChunk / $chunks * 100)
+            Write-Progress -Activity "Uploading File to Azure Storage" -Status "Uploading chunk $currentChunk of $chunks" `
+                -PercentComplete ($currentChunk / $chunks * 100)
 
             $null = Add-AzureStorageChunk $SasUri $id $bytes
 

@@ -18,7 +18,7 @@
 
     )
 
-    $TempName = [convert]::tostring((get-random ([uint32]::MaxValue)), 16).padleft(8, '0')
+    $TempName = [convert]::tostring((Get-Random ([uint32]::MaxValue)), 16).padleft(8, '0')
     $TempFolder = "$($Env:temp)\tmp$TempName"
     New-Item -ItemType Directory -Path $TempFolder
 }
