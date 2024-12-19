@@ -8,13 +8,13 @@ Connect-MgGraph -Scopes DeviceManagementApps.ReadWrite.All
 After connecting you can start uploading to Intune like this:
 
 ```Powershell
-Import-Module '.\IntuneGraph'
+Import-Module IntuneGraph
 
 $SourceFile = "C:\Path\To\Package.intunewin"
 
-$FileRule = New-DetectionRule -File -Path "C:\Program Files\Application" -FileOrFolderName "application.exe" -FileDetectionType exists -check32BitOn64System False
+$FileRule = Get-DetectionRule -File -Path "C:\Program Files\Application" -FileOrFolderName "application.exe" -FileDetectionType exists -check32BitOn64System False
 
-$ReturnCodes = Get-DefaultReturnCodes
+$ReturnCodes = Get-DefaultReturnCode
 
 Add-Win32Lob `
   -SourceFile "$SourceFile" `
