@@ -2,14 +2,14 @@
 tags:
 - Private
 ---
-# Update-AzureStorageUpload
+# Invoke-AzureStorageUploadRenew
 
 ## SYNOPSIS
 This function renews the Azure storage upload to remain active
 
 ## SYNTAX
 ```powershell
-Update-AzureStorageUpload [-FileUri] <String> [<CommonParameters>]
+Invoke-AzureStorageUploadRenew [-FileUri] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -19,7 +19,7 @@ This function renews the Azure storage upload to remain active
 
 ### EXAMPLE 1
 ```powershell
-Update-AzureStorageUpload -FileUri $azureStorageUri
+Invoke-AzureStorageUploadRenew -FileUri $azureStorageUri
 ```
 
 ## PARAMETERS
@@ -49,7 +49,7 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### None. This function returns nothing
 
 ## NOTES
-NAME: Update-AzureStorageUpload
+NAME: Invoke-AzureStorageUploadRenew
 
 ## RELATED LINKS
 

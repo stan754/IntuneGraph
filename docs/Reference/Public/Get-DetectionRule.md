@@ -2,20 +2,20 @@
 tags:
 - Public
 ---
-# New-DetectionRule
+# Get-DetectionRule
 
 ## SYNOPSIS
 This function is used to create new detection rules for a Win32 Application in Microsoft Intune
 
 ## SYNTAX
 ```powershell
-New-DetectionRule [-PowerShell] -ScriptFile <String> [-EnforceSignatureCheck <Boolean>] [-RunAs32Bit <Boolean>] [<CommonParameters>]
+Get-DetectionRule [-PowerShell] -ScriptFile <String> [-EnforceSignatureCheck <Boolean>] [-RunAs32Bit <Boolean>] [<CommonParameters>]
 
-New-DetectionRule [-MSI] -MSIProductCode <String> [-MSIProductVersionOperator <String>] [-MSIProductVersion <String>] [<CommonParameters>]
+Get-DetectionRule [-MSI] -MSIProductCode <String> [-MSIProductVersionOperator <String>] [-MSIProductVersion <String>] [<CommonParameters>]
 
-New-DetectionRule [-File] -Path <String> -FileOrFolderName <String> -FileDetectionType <String> [-FileDetectionOperator <String>] [-FileDetectionValue <String>] [-Check32BitOn64System <Boolean>] [<CommonParameters>]
+Get-DetectionRule [-File] -Path <String> -FileOrFolderName <String> -FileDetectionType <String> [-FileDetectionOperator <String>] [-FileDetectionValue <String>] [-Check32BitOn64System <Boolean>] [<CommonParameters>]
 
-New-DetectionRule [-Registry] -RegistryKeyPath <String> -RegistryDetectionType <String> [-RegistryDetectionOperator <String>] [-RegistryValueName <String>] [-RegistryDetectionValue <String>] [-Check32BitRegOn64System <String>] [<CommonParameters>]
+Get-DetectionRule [-Registry] -RegistryKeyPath <String> -RegistryDetectionType <String> [-RegistryDetectionOperator <String>] [-RegistryValueName <String>] [-RegistryDetectionValue <String>] [-Check32BitRegOn64System <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,22 +26,22 @@ The options are Powershell, MSI, File or, Registry
 
 ### EXAMPLE 1
 ```powershell
-New-DetectionRule -PowerShell -ScriptFile detection.ps1 -EnforceSignatureCheck $false -RunAs32Bit $false
+Get-DetectionRule -PowerShell -ScriptFile detection.ps1 -EnforceSignatureCheck $false -RunAs32Bit $false
 ```
 
 ### EXAMPLE 2
 ```powershell
-New-DetectionRule -MSI -MSIProductCode
+Get-DetectionRule -MSI -MSIProductCode
 ```
 
 ### EXAMPLE 3
 ```powershell
-New-DetectionRule -File -Path 'C:\Program Files\' -FileOrFolderName 'FolderToDetect' -FileDetectionType exists -Check32BitOn64System False
+Get-DetectionRule -File -Path 'C:\Program Files\' -FileOrFolderName 'FolderToDetect' -FileDetectionType exists -Check32BitOn64System False
 ```
 
 ### EXAMPLE 4
 ```powershell
-New-DetectionRule -Registry -RegistryKeyPath -RegistryDetectionType string -RegistryValueName 'value' -Check32BitRegOn64System False
+Get-DetectionRule -Registry -RegistryKeyPath -RegistryDetectionType string -RegistryValueName 'value' -Check32BitRegOn64System False
 ```
 
 ## PARAMETERS
@@ -386,7 +386,7 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### This function outputs a new detection rule for a Win32 Application in Microsoft Intune
 
 ## NOTES
-NAME: New-DetectionRule
+NAME: Get-DetectionRule
 
 ## RELATED LINKS
 

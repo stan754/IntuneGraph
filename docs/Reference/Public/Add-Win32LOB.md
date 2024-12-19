@@ -9,7 +9,7 @@ This function is used to upload a Win32 Application to Microsoft Intune
 
 ## SYNTAX
 ```powershell
-Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-installExperience] <String>] [-Sleep <Int32>] [<CommonParameters>]
+Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-InstallExperience] <String>] [-Sleep <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -163,7 +163,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -installExperience
+### -InstallExperience
 The installscope for the application this can be either system or user
 By default this is set to system
 

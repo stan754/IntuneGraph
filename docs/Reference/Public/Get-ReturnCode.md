@@ -2,14 +2,14 @@
 tags:
 - Public
 ---
-# New-ReturnCode
+# Get-ReturnCode
 
 ## SYNOPSIS
 This function is used to create new returncodes for a Win32 Application in Microsoft Intune
 
 ## SYNTAX
 ```powershell
-New-ReturnCode [-ReturnCode] <Int32> [-Type] <String> [<CommonParameters>]
+Get-ReturnCode [-ReturnCode] <Int32> [-Type] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -19,7 +19,7 @@ This function is used to create new returncodes for a Win32 Application in Micro
 
 ### EXAMPLE 1
 ```powershell
-New-ReturnCode -ReturnCode 1707 -Type 'success'
+Get-ReturnCode -ReturnCode 1707 -Type 'success'
 # Returns the default returncodes from Microsoft Intune
 ```
 
@@ -65,7 +65,7 @@ This cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -War
 ### This function outputs a new return code for a Win32 Application in Microsoft Intune
 
 ## NOTES
-NAME: New-ReturnCode
+NAME: Get-ReturnCode
 
 ## RELATED LINKS
 
