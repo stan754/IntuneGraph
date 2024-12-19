@@ -11,6 +11,10 @@
         "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format",
         "tag:yaml.org,2002:python/object/apply:pymdownx.slugs.slugify mapping"
     ],
+    "[github-actions-workflow][yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
     "editor.tabSize": 4
