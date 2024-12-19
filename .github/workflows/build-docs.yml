@@ -22,6 +22,7 @@ jobs:
           git config user.email "actions@github.com"
       
       - name: Check if there are changes to commit
+        id: check_changes
         run: |
           git add docs/
           git diff --exit-code docs/ || echo "Changes detected in docs/"
