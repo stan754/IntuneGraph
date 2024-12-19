@@ -1,8 +1,9 @@
 name: deploy docs
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["build docs"]
+    types:
+      - completed
 permissions:
   contents: write
 jobs:
