@@ -42,7 +42,7 @@ Add-Win32Lob `
   -publisher "Publisher name" `
   -description "Short description" `
   -detectionRules @($FileRule) `
-  -returnCodes $ReturnCodes `
+  -returnCodes $ReturnCodes
   -installCmdLine "powershell.exe .\install.ps1" `
   -uninstallCmdLine "powershell.exe .\uninstall.ps1"
 ```
