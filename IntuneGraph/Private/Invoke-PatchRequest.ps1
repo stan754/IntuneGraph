@@ -1,4 +1,4 @@
-function Invoke-PatchRequest {
+﻿function Invoke-PatchRequest {
   <#
   .SYNOPSIS
       This function invokes a patch request to the Microsoft Graph API
@@ -16,7 +16,7 @@ function Invoke-PatchRequest {
   param(
     # The path used for the request will be added behind the BaseUrl
     [Parameter(Mandatory = $true)]
-    [string] $CollectionPath, 
+    [string] $CollectionPath,
     # The body used for the request
     [Parameter(Mandatory = $true)]
     [string] $Body

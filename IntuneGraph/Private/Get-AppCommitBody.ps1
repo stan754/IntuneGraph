@@ -1,4 +1,4 @@
-function Get-AppCommitBody {
+﻿function Get-AppCommitBody {
   <#
   .SYNOPSIS
       This function returns a committedContentVersion body
@@ -18,7 +18,7 @@ function Get-AppCommitBody {
     [Parameter(Mandatory = $true)]
     [string] $ContentVersionId,
     # The LOB type
-    [Parameter(Mandatory = $true)] 
+    [Parameter(Mandatory = $true)]
     [string] $LobType
   )
   $body = @{ "@odata.type" = "#$LobType" }

@@ -1,4 +1,4 @@
-function New-DetectionRule() {
+﻿function Get-DetectionRule() {
     <#
     .SYNOPSIS
         This function is used to create new detection rules for a Win32 Application in Microsoft Intune
@@ -6,19 +6,19 @@ function New-DetectionRule() {
         This function is used to create new detection rules for a Win32 Application in Microsoft Intune
         The options are Powershell, MSI, File or, Registry
     .EXAMPLE
-        New-DetectionRule -PowerShell -ScriptFile detection.ps1 -EnforceSignatureCheck $false -RunAs32Bit $false
+        Get-DetectionRule -PowerShell -ScriptFile detection.ps1 -EnforceSignatureCheck $false -RunAs32Bit $false
     .EXAMPLE
-        New-DetectionRule -MSI -MSIProductCode
+        Get-DetectionRule -MSI -MSIProductCode
     .EXAMPLE
-        New-DetectionRule -File -Path 'C:\Program Files\' -FileOrFolderName 'FolderToDetect' -FileDetectionType exists -Check32BitOn64System False 
+        Get-DetectionRule -File -Path 'C:\Program Files\' -FileOrFolderName 'FolderToDetect' -FileDetectionType exists -Check32BitOn64System False
     .EXAMPLE
-        New-DetectionRule -Registry -RegistryKeyPath -RegistryDetectionType string -RegistryValueName 'value' -Check32BitRegOn64System False
+        Get-DetectionRule -Registry -RegistryKeyPath -RegistryDetectionType string -RegistryValueName 'value' -Check32BitRegOn64System False
     .INPUTS
         None. No objects can be piped into this function
     .OUTPUTS
         This function outputs a new detection rule for a Win32 Application in Microsoft Intune
     .NOTES
-        NAME: New-DetectionRule
+        NAME: Get-DetectionRule
     #>
     [cmdletbinding()]
     param (
@@ -105,15 +105,15 @@ function New-DetectionRule() {
         if (!(Test-Path "$ScriptFile")) {
             throw "Could not find file '$ScriptFile'..."
         }
-      
+
         $ScriptContent = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$ScriptFile"))
-      
+
         $DR = @{ "@odata.type" = "#microsoft.graph.win32LobAppPowerShellScriptDetection" }
         $DR.enforceSignatureCheck = "$EnforceSignatureCheck"
         $DR.runAs32Bit = "$RunAs32Bit"
         $DR.scriptContent = "$ScriptContent"
     }
-  
+
     elseif ($MSI) {
         $DR = @{ "@odata.type" = "#microsoft.graph.win32LobAppProductCodeDetection" }
         $DR.productVersionOperator = "$MSIProductVersionOperator"

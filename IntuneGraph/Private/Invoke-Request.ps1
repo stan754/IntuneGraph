@@ -1,4 +1,4 @@
-function Invoke-Request {
+﻿function Invoke-Request {
   <#
   .SYNOPSIS
       This function invokes a request to the Microsoft Graph API
@@ -17,10 +17,10 @@ function Invoke-Request {
     # The method to use for the request
     [Parameter(Mandatory = $true)]
     [ValidateSet("GET", "POST", "PATCH")]
-    [string] $Method, 
+    [string] $Method,
     # The path used for the request will be added behind the BaseUrl
     [Parameter(Mandatory = $true)]
-    [string] $CollectionPath, 
+    [string] $CollectionPath,
     # The body to be added to the request
     [Parameter(Mandatory = $false)]
     [string] $Body,

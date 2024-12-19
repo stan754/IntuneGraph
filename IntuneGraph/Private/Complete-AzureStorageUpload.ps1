@@ -1,4 +1,4 @@
-function Complete-AzureStorageUpload {
+﻿function Complete-AzureStorageUpload {
     <#
     .SYNOPSIS
         This function completes the Azure storage upload by committing the block list
@@ -16,7 +16,7 @@ function Complete-AzureStorageUpload {
     param(
         # The Sas Uri to commit the block list to
         [Parameter(Mandatory = $true)]
-        [string] $SasUri, 
+        [string] $SasUri,
         # An array of Ids for the block list
         [Parameter(Mandatory = $true)]
         [array] $Ids

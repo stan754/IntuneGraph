@@ -1,4 +1,4 @@
-function Add-Win32Lob() {
+﻿function Add-Win32Lob() {
     <#
     .SYNOPSIS
         This function is used to upload a Win32 Application to Microsoft Intune
@@ -80,14 +80,13 @@ function Add-Win32Lob() {
         Write-Verbose "Testing if SourceFile '$SourceFile' Path is valid..."
         Test-SourceFile "$SourceFile"
 
-        Write-Verbose
         Write-Verbose "Creating JSON data to pass to the service..."
 
         $DetectionXML = Get-IntuneWinXML "$SourceFile" -fileName "detection.xml"
 
         if ($DisplayName) { $DisplayName = $DisplayName }
         else { $DisplayName = $DetectionXML.ApplicationInfo.Name }
-      
+
         $FileName = $DetectionXML.ApplicationInfo.FileName
 
         $SetupFileName = $DetectionXML.ApplicationInfo.SetupFile
@@ -107,7 +106,7 @@ function Add-Win32Lob() {
             $MsiPublisher = $DetectionXML.ApplicationInfo.MsiInfo.MsiPublisher
             $MsiRequiresReboot = $DetectionXML.ApplicationInfo.MsiInfo.MsiRequiresReboot
             $MsiUpgradeCode = $DetectionXML.ApplicationInfo.MsiInfo.MsiUpgradeCode
-          
+
             if ($MsiRequiresReboot -eq "false") { $MsiRequiresReboot = $false }
             elseif ($MsiRequiresReboot -eq "true") { $MsiRequiresReboot = $true }
 

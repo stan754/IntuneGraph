@@ -1,4 +1,4 @@
-function Wait-FileProcessing {
+﻿function Wait-FileProcessing {
     <#
     .SYNOPSIS
         This function waits for a file to finish processing a specified stage
@@ -16,7 +16,7 @@ function Wait-FileProcessing {
     param (
         # The Microsoft Graph API Uri of the file
         [Parameter(Mandatory = $true)]
-        [string] $FileUri, 
+        [string] $FileUri,
         # The stage to wait for to successfully complete
         [Parameter(Mandatory = $true)]
         [string] $Stage

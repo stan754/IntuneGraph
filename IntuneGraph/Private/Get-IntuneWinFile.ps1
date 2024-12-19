@@ -1,4 +1,4 @@
-function Get-IntuneWinFile {
+﻿function Get-IntuneWinFile {
     <#
     .SYNOPSIS
         This function returns the encrypted intunewin file from inside the outer intunewin archive
@@ -9,7 +9,7 @@ function Get-IntuneWinFile {
     .INPUTS
         None. No objects can be piped into this function
     .OUTPUTS
-        This function returns the IntunePackage.intunewin from 
+        This function returns the IntunePackage.intunewin from
     .NOTES
         NAME: Get-IntuneWinFile
     #>

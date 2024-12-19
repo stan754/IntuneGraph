@@ -1,4 +1,4 @@
-function Get-AppFileBody {
+﻿function Get-AppFileBody {
   <#
   .SYNOPSIS
       This function returns the detection.xml from inside the outer intunewin archive
@@ -17,13 +17,13 @@ function Get-AppFileBody {
     # The file name
     [Parameter(Mandatory = $true)]
     [ValidateNotNullOrEmpty()]
-    [string] $Name, 
+    [string] $Name,
     # The size of the file prior to encryption
     [Parameter(Mandatory = $true)]
-    [Int64] $Size, 
+    [Int64] $Size,
     # The size of the file after encryption
     [Parameter(Mandatory = $true)]
-    [Int64] $SizeEncrypted, 
+    [Int64] $SizeEncrypted,
     # The manifest information
     [Parameter(Mandatory = $false)]
     $Manifest = $null

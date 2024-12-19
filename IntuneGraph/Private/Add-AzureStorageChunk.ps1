@@ -1,4 +1,4 @@
-function Add-AzureStorageChunk {
+﻿function Add-AzureStorageChunk {
     <#
     .SYNOPSIS
         This function uploads a chunk to an Azure Storage Blob using a Sas Uri
@@ -16,10 +16,10 @@ function Add-AzureStorageChunk {
     param(
         # The Azure Storage Blob Sas Uri
         [Parameter(Mandatory = $true)]
-        [string] $SasUri, 
+        [string] $SasUri,
         # The Id of the block that has to be uploaded
         [Parameter(Mandatory = $true)]
-        [string] $Id, 
+        [string] $Id,
         # The block to upload in a byte array
         [Parameter(Mandatory = $true)]
         [byte[]] $Body

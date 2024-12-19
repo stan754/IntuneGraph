@@ -1,18 +1,18 @@
-function Get-DefaultReturnCodes {
+function Get-DefaultReturnCode {
     <#
     .SYNOPSIS
         This function is used to get the default returncodes for a Win32 Application in Microsoft Intune
     .DESCRIPTION
         This function is used to get the default returncodes for a Win32 Application in Microsoft Intune
     .EXAMPLE
-        Get-DefaultReturnCodes
+        Get-DefaultReturnCode
         # Returns the default returncodes from Microsoft Intune
     .INPUTS
         None. No objects can be piped into this function
     .OUTPUTS
         This function outputs the default return codes used by Microsoft Intune
     .NOTES
-        NAME: Get-DefaultReturnCodes
+        NAME: Get-DefaultReturnCode
     #>
     @{"returnCode" = 0; "type" = "success" }, `
     @{"returnCode" = 1707; "type" = "success" }, `
