@@ -23,6 +23,7 @@ jobs:
       
       - name: Check if there are changes to commit
         run: |
+          git add docs/
           git diff --exit-code docs/ || echo "Changes detected in docs/"
           
       - name: Commit and push changes
