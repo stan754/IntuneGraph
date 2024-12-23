@@ -143,12 +143,12 @@
             throw "A Detection Rule can either be 'Manually configure detection rules' or 'Use a custom detection script'"
         }
         else {
-            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'DetectionRules' -Value $DetectionRules
+            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'detectionRules' -Value $DetectionRules
         }
 
 
         if ($ReturnCodes) {
-            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'ReturnCodes' -Value @($ReturnCodes)
+            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'returnCodes' -Value @($ReturnCodes)
         }
         else {
             throw "Intunewin file requires ReturnCodes to be specified, If you want to use the default ReturnCode run 'Get-DefaultReturnCodes'"
