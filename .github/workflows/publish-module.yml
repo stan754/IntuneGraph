@@ -10,8 +10,6 @@ on:
 jobs:
   update-version:
     runs-on: ubuntu-latest
-    outputs:
-      continue: ${{ steps.update-manifest.outputs.MANIFEST_RESULT }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -21,17 +19,14 @@ jobs:
         id: update-manifest
         run: |
           $result = ./Tools/Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }}
-          Write-Output "MANIFEST_RESULT=$($result)" >> $env:GITHUB_OUTPUT
+          if (-not $result) {exit 1}
       
-
       - name: Configure Git
-        if: ${{ steps.update-manifest.outputs.MANIFEST_RESULT == 'True' }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
       
       - name: Commit and push changes
-        if: ${{ steps.update-manifest.outputs.MANIFEST_RESULT == 'True' }}
         run: |
           git add IntuneGraph/IntuneGraph.psd1
           git commit -m "Update module version" || echo "Nothing to push"
@@ -40,7 +35,7 @@ jobs:
           git push
 
   publish-to-gallery:
-    if: ${{ needs.update-version.outputs.continue == 'True' }}
+    needs: update-version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
