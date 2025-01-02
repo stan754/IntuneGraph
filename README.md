@@ -3,18 +3,29 @@
 # IntuneGraph
 Powershell Module to upload intunewin to Intune.
 
+> [!IMPORTANT]  
+> This module is a community project and might not work for everyone!
+> 
+> The sourcecode is open but make sure to test the module before implementing this somewhere there is **NO** support available
+
 ## Getting Started
 To run from the source code clone or download this repo to your local machine.
 
 ### Prerequisites
-The only dependency for this module is the `Microsoft.Graph` Powershell module.
+The only dependency for this module is the `Microsoft.Graph.Authentication` Powershell module.
 Which can be installed using:
 
 ```Powershell
-Install-Module Microsoft.Graph -Scope CurrentUser -Repository PSGallery -Force
+Install-Module Microsoft.Graph.Authentication -Scope CurrentUser -Repository PSGallery -Force
 ```
 
 ### Import
+> [!TIP]
+> The module can now also be installed from PSGallery!
+> ```Powershell
+> Install-Module IntuneGraph -Scope CurrentUser -Repository PSGallery -Force
+> ```
+
 After installing the prerequisites the module should be ready to use and can be imported using:
 
 ```Powershell
