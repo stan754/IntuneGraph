@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Build documentation
+      - name: Update Manifest
         shell: pwsh
         id: update-manifest
         run: |
