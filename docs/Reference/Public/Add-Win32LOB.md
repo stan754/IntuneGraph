@@ -9,7 +9,7 @@ This function is used to upload a Win32 Application to Microsoft Intune
 
 ## SYNTAX
 ```powershell
-Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-InstallExperience] <String>] [-Sleep <Int32>] [<CommonParameters>]
+Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-InstallExperience] <String>] [-DisplayVersion <Version>] [-Sleep <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -175,6 +175,21 @@ Aliases:
 Required: False
 Position: 9
 Default value: system
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DisplayVersion
+The display version for the application in Microsoft Intune
+
+```yaml
+Type: Version
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
