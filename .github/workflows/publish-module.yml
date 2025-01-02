@@ -8,10 +8,8 @@ on:
         type: string
 
 jobs:
-  update-version:
+  publish-to-gallery:
     runs-on: ubuntu-latest
-    outputs:
-      sha: ${{ steps.commit.newhead }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -36,19 +34,25 @@ jobs:
           git fetch origin
           git rebase --strategy-option=theirs origin/main
           git push origin main
-          echo newhead=$(git rev-parse HEAD) >> $GITHUB_OUTPUT
 
-  publish-to-gallery:
-    needs: update-version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ needs.update-version.outputs.sha }}
       - name: Build and publish
         env:
           NUGET_KEY: ${{ secrets.PSGALLERYAPIKEY }}
         shell: pwsh
         run: |
           Publish-Module -path ./IntuneGraph -NuGetApiKey $env:NUGET_KEY
+
+  # publish-to-gallery:
+  #   needs: update-version
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #         ref: ${{ needs.update-version.outputs.sha }}
+  #     - name: Build and publish
+  #       env:
+  #         NUGET_KEY: ${{ secrets.PSGALLERYAPIKEY }}
+  #       shell: pwsh
+  #       run: |
+  #         Publish-Module -path ./IntuneGraph -NuGetApiKey $env:NUGET_KEY
