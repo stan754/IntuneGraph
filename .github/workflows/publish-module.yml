@@ -21,7 +21,7 @@ jobs:
         id: update-manifest
         run: |
           $result = ./Tools/Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }}
-          echo "update-manifest=$result" >> "$GITHUB_OUTPUT"
+          echo "update-manifest=$result" >> "$env:GITHUB_OUTPUT"
 
       - name: Configure Git
         if: ${{ steps.update-manifest.outputs.result == 'true' }}
