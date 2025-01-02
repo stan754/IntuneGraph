@@ -1,12 +1,46 @@
 name: publish module
 on:
   workflow_dispatch:
+    inputs:
+      moduleVersion:
+        description: 'Version of module'
+        required: true
+        type: string
 
 jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    outputs:
+      continue: ${{ steps.update-manifest.outputs.result }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Build documentation
+        shell: pwsh
+        id: update-manifest
+        run: |
+          $result = ./Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }}
+          echo "update-manifest=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+      
+      - name: Commit and push changes
+        run: |
+          git add IntuneGraph/IntuneGraph.psd1
+          git commit -m "Update module version" || echo "Nothing to push"
+          git fetch origin
+          git rebase --strategy-option=theirs origin/main
+          git push
+
   publish-to-gallery:
+    if: ${{ needs.update-version.outputs.continue == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build and publish
         env:
           NUGET_KEY: ${{ secrets.PSGALLERYAPIKEY }}
