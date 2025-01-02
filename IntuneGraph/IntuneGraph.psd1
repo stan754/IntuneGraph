@@ -69,8 +69,11 @@ Description = 'Powershell Module to upload intunewin to Intune.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Add-MSStoreApp', 'Add-Win32LOB', 'Get-DefaultReturnCode', 
-               'Get-DetectionRule', 'Get-ReturnCode', 'Update-ApplicationLogo'
+FunctionsToExport = 'Add-MSStoreApp', 'Add-Win32ApplicationAssignment', 'Add-Win32LOB', 
+               'Get-Application', 'Get-ApplicationAssignment', 
+               'Get-DefaultReturnCode', 'Get-DetectionRule', 'Get-ReturnCode', 
+               'Remove-Application', 'Remove-ApplicationAssignment', 
+               'Update-ApplicationLogo'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
