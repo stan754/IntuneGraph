@@ -5,12 +5,14 @@ param (
     [version] $ModuleVersion 
 )
 
-$manifestPath = "$Module\$Module.psd1"
+$ProjectRoot = "$PSScriptRoot\.."
+
+$manifestPath = "$ProjectRoot\$Module\$Module.psd1"
 
 $OldModuleManifest = Import-PowerShellDataFile $manifestPath
 
 $publicFunctions = @()
-Get-ChildItem -Path "$Module\Public\*.ps1" -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+Get-ChildItem -Path "$ProjectRoot\$Module\Public\*.ps1" -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
     $publicFunctions += $_.BaseName
 }
 
