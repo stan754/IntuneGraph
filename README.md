@@ -1,3 +1,5 @@
+![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/IntuneGraph)
+
 # IntuneGraph
 Powershell Module to upload intunewin to Intune.
 
