@@ -20,7 +20,9 @@ jobs:
         shell: pwsh
         id: update-manifest
         run: |
-          $env:GITHUB_OUTPUT += "MANIFEST_RESULT=$(./Tools/Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }})"
+          $result = ./Tools/Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }}
+          "MANIFEST_RESULT=$result" >> $env:GITHUB_OUTPUT
+      
 
       - name: Configure Git
         if: ${{ steps.update-manifest.outputs.MANIFEST_RESULT == 'True' }}
