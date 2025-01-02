@@ -11,7 +11,7 @@ function Remove-Application {
     .OUTPUTS
         None. This function outputs nothing
     .NOTES
-        NAME: Delete-Application
+        NAME: Remove-Application
     #>
     param (
         # The application ID in Intune
