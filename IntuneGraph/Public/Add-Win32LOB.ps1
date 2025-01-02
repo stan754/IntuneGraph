@@ -68,6 +68,10 @@
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
         [string] $InstallExperience = "system",
+        # The display version for the application in Microsoft Intune
+        [parameter(Mandatory = $false)]
+        [ValidateNotNullOrEmpty()]
+        [version] $DisplayVersion,
         # The time the function sleeps after creating and uploading the application to make sure it's available
         # By default this is 30 seconds
         [parameter(Mandatory = $false)]
@@ -152,6 +156,10 @@
         }
         else {
             throw "Intunewin file requires ReturnCodes to be specified, If you want to use the default ReturnCode run 'Get-DefaultReturnCodes'"
+        }
+
+        if ($DisplayVersion) {
+            $mobileAppBody | Add-Member -MemberType NoteProperty -Name 'displayVersion' -Value $DisplayVersion.ToString()
         }
 
         Write-Verbose "Creating application in Intune..."
