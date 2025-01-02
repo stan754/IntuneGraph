@@ -16,7 +16,7 @@
     param (
         # The method to use for the request
         [Parameter(Mandatory = $true)]
-        [ValidateSet("GET", "POST", "PATCH")]
+        [ValidateSet("GET", "POST", "PATCH", "DELETE")]
         [string] $Method,
         # The path used for the request will be added behind the BaseUrl
         [Parameter(Mandatory = $true)]
