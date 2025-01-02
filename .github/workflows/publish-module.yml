@@ -10,6 +10,8 @@ on:
 jobs:
   update-version:
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.commit.newhead }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -27,18 +29,22 @@ jobs:
           git config user.email "actions@github.com"
       
       - name: Commit and push changes
+        id: commit
         run: |
           git add IntuneGraph/IntuneGraph.psd1
           git commit -m "Update module version" || echo "Nothing to push"
           git fetch origin
           git rebase --strategy-option=theirs origin/main
           git push
+          echo newhead=$(git rev-parse HEAD) >> $GITHUB_OUTPUT
 
   publish-to-gallery:
     needs: update-version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.update-version.outputs.sha }}
       - name: Build and publish
         env:
           NUGET_KEY: ${{ secrets.PSGALLERYAPIKEY }}
