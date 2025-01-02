@@ -24,13 +24,13 @@ jobs:
           echo "update-manifest=$result" >> "$env:GITHUB_OUTPUT"
 
       - name: Configure Git
-        if: ${{ steps.update-manifest.outputs.result == 'true' }}
+        if: ${{ steps.update-manifest.outputs.result == 'True' }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
       
       - name: Commit and push changes
-        if: ${{ steps.update-manifest.outputs.result == 'true' }}
+        if: ${{ steps.update-manifest.outputs.result == 'True' }}
         run: |
           git add IntuneGraph/IntuneGraph.psd1
           git commit -m "Update module version" || echo "Nothing to push"
@@ -39,7 +39,7 @@ jobs:
           git push
 
   publish-to-gallery:
-    if: ${{ needs.update-version.outputs.continue == 'true' }}
+    if: ${{ needs.update-version.outputs.continue == 'True' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
