@@ -21,7 +21,7 @@ jobs:
         id: update-manifest
         run: |
           $result = ./Tools/Update-Manifest.ps1 -ModuleVersion ${{ inputs.moduleVersion }}
-          "MANIFEST_RESULT=$result" >> $env:GITHUB_OUTPUT
+          Write-Output "MANIFEST_RESULT=$($result)" >> $env:GITHUB_OUTPUT
       
 
       - name: Configure Git
