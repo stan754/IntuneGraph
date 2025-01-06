@@ -228,3 +228,5 @@ $Private | ForEach-Object {
 $Public | ForEach-Object {
   New-MarkdownDoc -CommandName $_.BaseName -OutputFolder "$ReferenceDocsPath\Public" -Tags "Public"
 }
+
+"nav:`n`t- Public`n`t-Private" | Out-File "$ReferenceDocsPath\.pages"
