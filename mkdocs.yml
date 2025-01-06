@@ -63,6 +63,7 @@ plugins:
       fallback_to_build_date: true
   - git-authors:
       show_email_address: false
+  - print-site
 
 markdown_extensions:
   - pymdownx.highlight:

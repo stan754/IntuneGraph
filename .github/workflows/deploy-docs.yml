@@ -30,5 +30,6 @@ jobs:
               mkdocs-git-revision-date-localized-plugin \
               mkdocs-git-authors-plugin \
               mkdocs-material[imaging] \
-              mkdocs-awesome-pages-plugin 
+              mkdocs-awesome-pages-plugin \
+              mkdocs-print-site-plugin
       - run: mkdocs gh-deploy --force
