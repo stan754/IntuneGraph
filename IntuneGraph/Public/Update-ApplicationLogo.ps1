@@ -17,9 +17,11 @@ function Update-ApplicationLogo {
     #>
     [CmdletBinding()]
     param (
+        # The Application ID in Microsoft Intune
         [Parameter(Mandatory = $true)]
         [ValidatePattern('^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$')]
         [string] $ApplicationId,
+        # The Path to the logo (JPEG or PNG)
         [Parameter(Mandatory = $true)]
         [ValidatePattern('^.*\.(jpe?g|png)$')]
         [string] $LogoPath

@@ -5,7 +5,11 @@ function Add-Win32ApplicationAssignment {
     .DESCRIPTION
         This function is used to add an assignment to a win32 application in Microsoft Intune using the Microsoft Graph API with the only dependency being the Microsoft.Graph.Authentication Module
     .EXAMPLE
-        Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14
+        Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -Group -GroupID a3d3387d-61b8-4c5c-8037-c6bde1213d7e
+    .EXAMPLE
+        Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -AllUsers
+    .EXAMPLE
+        Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -AllDevices
     .INPUTS
         None. No objects can be piped into this function
     .OUTPUTS
