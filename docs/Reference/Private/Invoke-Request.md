@@ -9,7 +9,7 @@ This function invokes a request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Invoke-Request [-Method] <String> [-CollectionPath] <String> [[-Body] <String>] [[-BaseUrl] <String>] [<CommonParameters>]
+Invoke-Request [-Method] <String> [-CollectionPath] <String> [[-Body] <String>] [[-ApiVersion] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -70,17 +70,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BaseUrl
-The base url used for all requests
+### -ApiVersion
+The Graph API version
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['v1.0', 'beta']
 
 Required: False
 Position: 4
-Default value: https://graph.microsoft.com/beta/deviceAppManagement/
+Default value: beta
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -9,7 +9,7 @@ This function invokes a patch request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Invoke-PatchRequest [-CollectionPath] <String> [-Body] <String> [<CommonParameters>]
+Invoke-PatchRequest [-CollectionPath] <String> [-Body] <String> [[-ApiVersion] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,6 +50,22 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ApiVersion
+The Graph API version
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Valid Values: ['v1.0', 'beta']
+
+Required: False
+Position: 3
+Default value: beta
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

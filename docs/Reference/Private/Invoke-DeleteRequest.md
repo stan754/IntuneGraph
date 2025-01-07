@@ -9,7 +9,7 @@ This function invokes a delete request to the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Invoke-DeleteRequest [-CollectionPath] <String> [<CommonParameters>]
+Invoke-DeleteRequest [-CollectionPath] <String> [[-ApiVersion] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,6 +35,22 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ApiVersion
+The Graph API version
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Valid Values: ['v1.0', 'beta']
+
+Required: False
+Position: 2
+Default value: beta
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
