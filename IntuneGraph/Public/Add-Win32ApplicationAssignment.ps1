@@ -158,5 +158,5 @@ function Add-Win32ApplicationAssignment {
         }
     } | ConvertTo-Json -Depth 10
 
-    Invoke-PostRequest -CollectionPath "mobileApps/$IntuneID/assignments" -Body $body
+    Invoke-PostRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID/assignments" -Body $body -ApiVersion 'beta'
 }
