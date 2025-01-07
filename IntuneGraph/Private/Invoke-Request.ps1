@@ -24,11 +24,13 @@
         # The body to be added to the request
         [Parameter(Mandatory = $false)]
         [string] $Body,
-        # The base url used for all requests
+        # The Graph API version
         [Parameter(Mandatory = $false)]
-        [string] $BaseUrl = "https://graph.microsoft.com/beta/deviceAppManagement/"
+        [ValidateSet('v1.0', 'beta')]
+        [string] $ApiVersion = 'beta'
     )
 
+    $BaseUrl = "https://graph.microsoft.com/$ApiVersion/"
     $uri = "$BaseUrl$CollectionPath"
     $request = "$Method $uri"
 

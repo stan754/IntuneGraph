@@ -19,8 +19,12 @@
         [string] $CollectionPath,
         # The body used for the request
         [Parameter(Mandatory = $true)]
-        [string] $Body
+        [string] $Body,
+        # The Graph API version
+        [Parameter(Mandatory = $false)]
+        [ValidateSet('v1.0', 'beta')]
+        [string] $ApiVersion = 'beta'
     )
 
-    Invoke-Request "PATCH" $CollectionPath $Body
+    Invoke-Request -Method "PATCH" -CollectionPath "deviceAppManagement/$CollectionPath" -Body $Body -ApiVersion $ApiVersion
 }
