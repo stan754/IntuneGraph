@@ -94,6 +94,7 @@ The architecture for the package from the Microsoft Store
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['x64', 'x86', 'arm64']
 
 Required: False
 Position: 5
@@ -110,6 +111,7 @@ Optional, if left empty will be filled with default information from the store
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['system', 'user']
 
 Required: False
 Position: 6

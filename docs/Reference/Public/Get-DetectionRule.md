@@ -173,6 +173,7 @@ The operator to detect product version
 Type: String
 Parameter Sets: MSI
 Aliases: 
+Valid Values: ['notConfigured', 'equal', 'notEqual', 'greaterThan', 'greaterThanOrEqual', 'lessThan', 'lessThanOrEqual']
 
 Required: False
 Position: Named
@@ -233,6 +234,7 @@ The file system detection type
 Type: String
 Parameter Sets: File
 Aliases: 
+Valid Values: ['notConfigured', 'exists', 'modifiedDate', 'createdDate', 'version', 'sizeInMB', 'doesNotExist']
 
 Required: True
 Position: Named
@@ -248,6 +250,7 @@ The operator for file or folder detection
 Type: String
 Parameter Sets: File
 Aliases: 
+Valid Values: ['notConfigured', 'equal', 'notEqual', 'greaterThan', 'greaterThanOrEqual', 'lessThan', 'lessThanOrEqual']
 
 Required: False
 Position: Named
@@ -308,6 +311,7 @@ The registry data detection type
 Type: String
 Parameter Sets: Registry
 Aliases: 
+Valid Values: ['notConfigured', 'exists', 'doesNotExist', 'string', 'integer', 'version']
 
 Required: True
 Position: Named
@@ -323,6 +327,7 @@ The operator for registry data detection
 Type: String
 Parameter Sets: Registry
 Aliases: 
+Valid Values: ['notConfigured', 'equal', 'notEqual', 'greaterThan', 'greaterThanOrEqual', 'lessThan', 'lessThanOrEqual']
 
 Required: False
 Position: Named

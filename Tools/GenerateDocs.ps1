@@ -39,12 +39,18 @@ function Get-HelpObject {
         $defaultValue = 'None'
       }
 
+      $validValues = ($Command.Parameters[$ParamName].Attributes | Where-Object ValidValues).ValidValues
+      if ($validValues) {
+        $validValues = "['" + ($validValues -join "', '") + "']"
+      }
+
       $parameters += [PSCustomObject]@{
         Name           = "-$($_.name)"
         Description    = ($_.Description | Out-String).Trim()
         Type           = ($_.type.name | Out-String).Trim()
         ParameterSets  = $ParameterSet
         Aliases        = ($Command.Parameters[$ParamName].Aliases -join ", ")
+        ValidValues    = $validValues
         Required       = ($_.required.ToString() -replace '^.', { $_.Value.ToUpper() }).Trim()
         Position       = $position
         DefaultValue   = $defaultValue
@@ -158,6 +164,7 @@ function New-MarkdownDoc {
       $output += "Type: $($_.Type)"
       $output += "Parameter Sets: $($_.ParameterSets)"
       $output += "Aliases: $($_.Aliases)"
+      if($_.ValidValues) {$output += "Valid Values: $($_.ValidValues)"}
       $output += ""
       $output += "Required: $($_.Required)"
       $output += "Position: $($_.Position)"

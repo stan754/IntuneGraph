@@ -31,6 +31,7 @@ The method to use for the request
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['GET', 'POST', 'PATCH', 'DELETE']
 
 Required: True
 Position: 1

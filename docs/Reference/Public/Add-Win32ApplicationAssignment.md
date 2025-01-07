@@ -50,6 +50,7 @@ The Install intent for the assignment
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['available', 'required', 'uninstall', 'availableWithoutEnrollment']
 
 Required: True
 Position: Named
@@ -140,6 +141,7 @@ The notification status for this app assignment
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['showAll', 'showReboot', 'hideAll']
 
 Required: False
 Position: Named

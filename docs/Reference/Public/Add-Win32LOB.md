@@ -171,6 +171,7 @@ By default this is set to system
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['system', 'user']
 
 Required: False
 Position: 9

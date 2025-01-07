@@ -166,6 +166,7 @@ The install scope of the application
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['system', 'user']
 
 Required: True
 Position: Named
@@ -211,6 +212,7 @@ The MSI package type
 Type: String
 Parameter Sets: MSI
 Aliases: 
+Valid Values: ['perMachine', 'perUser', 'dualPurpose']
 
 Required: True
 Position: Named

@@ -47,6 +47,7 @@ The type of return code (success, softreboot, hardreboot, retry)
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Valid Values: ['success', 'softReboot', 'hardReboot', 'retry']
 
 Required: True
 Position: 2
