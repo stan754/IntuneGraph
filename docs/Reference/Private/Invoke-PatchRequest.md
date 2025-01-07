@@ -65,7 +65,7 @@ Valid Values: ['v1.0', 'beta']
 
 Required: False
 Position: 3
-Default value: beta
+Default value: v1.0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
