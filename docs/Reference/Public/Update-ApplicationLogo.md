@@ -30,7 +30,7 @@ Update-ApplicationLogo -ApplicationId 'deedc70f-d790-4caf-962e-3871762d75a7' -Lo
 ## PARAMETERS
 
 ### -ApplicationId
-
+The Application ID in Microsoft Intune
 
 ```yaml
 Type: String
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 ```
 
 ### -LogoPath
-
+The Path to the logo (JPEG or PNG)
 
 ```yaml
 Type: String

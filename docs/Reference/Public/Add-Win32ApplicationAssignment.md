@@ -23,7 +23,17 @@ This function is used to add an assignment to a win32 application in Microsoft I
 
 ### EXAMPLE 1
 ```powershell
-Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14
+Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -Group -GroupID a3d3387d-61b8-4c5c-8037-c6bde1213d7e
+```
+
+### EXAMPLE 2
+```powershell
+Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -AllUsers
+```
+
+### EXAMPLE 3
+```powershell
+Add-Win32ApplicationAssignment -IntuneID 930cd379-4c25-4f63-bad1-687666abbb14 -AllDevices
 ```
 
 ## PARAMETERS
