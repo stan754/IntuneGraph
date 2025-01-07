@@ -16,8 +16,12 @@ function Invoke-GetRequest {
     param(
         # The path used for the request will be added behind the BaseUrl
         [Parameter(Mandatory = $true)]
-        [string] $CollectionPath
+        [string] $CollectionPath,
+        # The Graph API version
+        [Parameter(Mandatory = $false)]
+        [ValidateSet('v1.0', 'beta')]
+        [string] $ApiVersion = 'beta'
     )
 
-    Invoke-Request "GET" $CollectionPath
+    Invoke-Request -Method "GET" -CollectionPath "deviceAppManagement/$CollectionPath" -ApiVersion $ApiVersion
 }
