@@ -104,5 +104,5 @@ function Add-MSStoreApp {
         publisher             = $Publisher
     } | ConvertTo-Json -Depth 10
 
-    Invoke-PostRequest -CollectionPath 'mobileApps' -Body $appBody
+    Invoke-PostRequest -CollectionPath 'deviceAppManagement/mobileApps' -Body $appBody -ApiVersion 'beta'
 }

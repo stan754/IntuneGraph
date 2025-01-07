@@ -29,7 +29,7 @@
 
     $file = $null
     while ($attempts -gt 0) {
-        $file = Invoke-GetRequest $FileUri
+        $file = Invoke-GetRequest -CollectionPath $FileUri -ApiVersion 'beta'
 
         if ($file.uploadState -eq $successState) {
             break

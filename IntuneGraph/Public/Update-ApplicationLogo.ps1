@@ -37,7 +37,7 @@ function Update-ApplicationLogo {
         }
     }
 
-    $application = Invoke-GetRequest -CollectionPath "mobileApps/$ApplicationId"
+    $application = Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$ApplicationId" -ApiVersion 'beta'
     
     $imageBytes = [System.IO.File]::ReadAllBytes($LogoPath)
     $imageContent = [System.Convert]::ToBase64String($imageBytes)
@@ -51,5 +51,5 @@ function Update-ApplicationLogo {
         }
     } | ConvertTo-Json -Depth 10
 
-    Invoke-PatchRequest -CollectionPath "mobileApps/$ApplicationId" -Body $body
+    Invoke-PatchRequest -CollectionPath "deviceAppManagement/mobileApps/$ApplicationId" -Body $body -ApiVersion 'beta'
 }

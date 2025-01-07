@@ -23,8 +23,8 @@
         # The Graph API version
         [Parameter(Mandatory = $false)]
         [ValidateSet('v1.0', 'beta')]
-        [string] $ApiVersion = 'beta'
+        [string] $ApiVersion = 'v1.0'
     )
 
-    Invoke-Request -Method "PATCH" -CollectionPath "deviceAppManagement/$CollectionPath" -Body $Body -ApiVersion $ApiVersion
+    Invoke-Request -Method "PATCH" -CollectionPath $CollectionPath -Body $Body -ApiVersion $ApiVersion
 }

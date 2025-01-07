@@ -163,12 +163,12 @@
         }
 
         Write-Verbose "Creating application in Intune..."
-        $mobileApp = Invoke-PostRequest "mobileApps" ($mobileAppBody | ConvertTo-Json)
+        $mobileApp = Invoke-PostRequest -CollectionPath "deviceAppManagement/mobileApps" -Body ($mobileAppBody | ConvertTo-Json) -ApiVersion 'beta'
 
         Write-Verbose "Creating Content Version in the service for the application..."
         $appId = $mobileApp.id
-        $contentVersionUri = "mobileApps/$appId/$LOBType/contentVersions"
-        $contentVersion = Invoke-PostRequest $contentVersionUri "{}"
+        $contentVersionUri = "deviceAppManagement/mobileApps/$appId/$LOBType/contentVersions"
+        $contentVersion = Invoke-PostRequest -CollectionPath $contentVersionUri -Body "{}" -ApiVersion 'beta'
 
         Write-Verbose "Getting Encryption Information for '$SourceFile'..."
 
@@ -192,12 +192,12 @@
         Write-Verbose "Creating a new file entry in Azure for the upload..."
         $contentVersionId = $contentVersion.id
         $fileBody = Get-AppFileBody "$FileName" $Size $EncrySize $null
-        $filesUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files"
-        $file = Invoke-PostRequest $filesUri ($fileBody | ConvertTo-Json)
+        $filesUri = "deviceAppManagement/mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files"
+        $file = Invoke-PostRequest -CollectionPath $filesUri -Body ($fileBody | ConvertTo-Json) -ApiVersion 'beta'
 
         Write-Verbose "Waiting for the file entry URI to be created..."
         $fileId = $file.id
-        $fileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId"
+        $fileUri = "deviceAppManagement/mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId"
         $file = Wait-FileProcessing $fileUri "AzureStorageUriRequest"
 
         Write-Verbose "Uploading file to Azure Storage..."
@@ -207,21 +207,21 @@
         Remove-Item "$IntuneWinFile" -Force
 
         Write-Verbose "Committing the file into Azure Storage..."
-        $commitFileUri = "mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId/commit"
-        Invoke-PostRequest $commitFileUri ($fileEncryptionInfo | ConvertTo-Json)
+        $commitFileUri = "deviceAppManagement/mobileApps/$appId/$LOBType/contentVersions/$contentVersionId/files/$fileId/commit"
+        Invoke-PostRequest -CollectionPath $commitFileUri -Body ($fileEncryptionInfo | ConvertTo-Json) -ApiVersion 'beta'
 
         Write-Verbose "Waiting for the service to process the commit file request..."
         $file = Wait-FileProcessing $fileUri "CommitFile"
 
         Write-Verbose "Committing the file into Azure Storage..."
-        $commitAppUri = "mobileApps/$appId"
+        $commitAppUri = "deviceAppManagement/mobileApps/$appId"
         $commitAppBody = Get-AppCommitBody $contentVersionId $LOBType
-        Invoke-PatchRequest $commitAppUri ($commitAppBody | ConvertTo-Json)
+        Invoke-PatchRequest -CollectionPath $commitAppUri -Body ($commitAppBody | ConvertTo-Json) -ApiVersion 'beta'
 
         Write-Verbose "Sleeping for $Sleep seconds to allow patch completion..."
         Start-Sleep $Sleep
 
-        $FinalApplicationResponse = Invoke-GetRequest "mobileApps/$appId"
+        $FinalApplicationResponse = Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$appId" -ApiVersion 'beta'
 
         return $FinalApplicationResponse
     }

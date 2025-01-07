@@ -21,5 +21,5 @@ function Remove-ApplicationAssignment {
         [Parameter(Mandatory = $false)]
         [string] $AssignmentID
     )
-    Invoke-DeleteRequest "mobileApps/$IntuneID/assignments/$AssignmentID"
+    Invoke-DeleteRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID/assignments/$AssignmentID" -ApiVersion 'beta'
 }

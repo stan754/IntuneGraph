@@ -19,5 +19,5 @@ function Get-Application {
         [guid] $IntuneID
     )
     
-    Invoke-GetRequest "mobileApps/$IntuneID"
+    Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID" -ApiVersion 'beta'
 }

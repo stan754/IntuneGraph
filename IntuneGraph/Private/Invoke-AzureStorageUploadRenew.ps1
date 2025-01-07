@@ -21,7 +21,7 @@
 
     $renewalUri = "$FileUri/renewUpload"
     $actionBody = ""
-    $null = Invoke-PostRequest $renewalUri $actionBody
+    $null = Invoke-PostRequest -CollectionPath $renewalUri -Body $actionBody -ApiVersion 'beta'
 
     $null = Wait-FileProcessing $FileUri "AzureStorageUriRenewal"
 }
