@@ -23,5 +23,5 @@ function Invoke-DeleteRequest {
         [string] $ApiVersion = 'beta'
     )
 
-    Invoke-Request -Method "DELETE" -CollectionPath "deviceAppManagement/$CollectionPath" -ApiVersion $ApiVersion
+    Invoke-Request -Method "DELETE" -CollectionPath $CollectionPath -ApiVersion $ApiVersion
 }

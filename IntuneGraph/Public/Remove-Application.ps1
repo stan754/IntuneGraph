@@ -18,5 +18,5 @@ function Remove-Application {
         [Parameter(Mandatory = $true)]
         [guid] $IntuneID
     )
-    Invoke-DeleteRequest "mobileApps/$IntuneID"
+    Invoke-DeleteRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID" -ApiVersion 'beta'
 }
