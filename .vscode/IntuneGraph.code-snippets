@@ -1,0 +1,66 @@
+{
+    "IntuneGraph function": {
+        "scope": "powershell",
+        "prefix": "igfunction",
+        "body": [
+            "function $1-$2 {",
+            "\t<#",
+            "\t.SYNOPSIS",
+            "\t\tThis function is used to $3",
+            "\t.DESCRIPTION",
+            "\t\tThis function is used to $3",
+            "\t.EXAMPLE",
+            "\t\t$1-$2",
+            "\t.INPUTS",
+            "\t\tNone. No objects can be piped into this function",
+            "\t.OUTPUTS",
+            "\t\tNone. This function returns nothing",
+            "\t.NOTES",
+            "\t\tNAME: $1-$2",
+            "\t#>",
+            "\t[CmdletBinding()]",
+            "\tparam (",
+            "\t)",
+            "\t$0",
+            "}"
+        ],
+        "description": "template for building a function to"
+    },
+    "IntuneGraph function file": {
+        "scope": "powershell",
+        "prefix": "igfunctionfile",
+        "isFileTemplate": true,
+        "body": [
+            "function $TM_FILENAME_BASE {",
+            "\t<#",
+            "\t.SYNOPSIS",
+            "\t\tThis function is used to $1",
+            "\t.DESCRIPTION",
+            "\t\tThis function is used to $1",
+            "\t.EXAMPLE",
+            "\t\t$TM_FILENAME_BASE",
+            "\t.INPUTS",
+            "\t\tNone. No objects can be piped into this function",
+            "\t.OUTPUTS",
+            "\t\tNone. This function returns nothing",
+            "\t.NOTES",
+            "\t\tNAME: $TM_FILENAME_BASE",
+            "\t#>",
+            "\t[CmdletBinding()]",
+            "\tparam (",
+            "\t)",
+            "\t$0",
+            "}"
+        ],
+        "description": "template for building a function to"
+    },
+    "IntuneGraph parameter": {
+        "scope": "powershell",
+        "prefix": "igparam",
+        "body": [
+            "# $0",
+            "[Parameter(Mandatory = ${3|$true,$false|})]",
+            "[$1] \\$$2"
+        ]
+    }
+}
