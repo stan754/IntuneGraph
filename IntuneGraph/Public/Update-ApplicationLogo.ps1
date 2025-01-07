@@ -37,7 +37,7 @@ function Update-ApplicationLogo {
         }
     }
 
-    $application = Invoke-GetRequest -CollectionPath "mobileApps/$ApplicationId"
+    $application = Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$ApplicationId" -ApiVersion 'beta'
     
     $imageBytes = [System.IO.File]::ReadAllBytes($LogoPath)
     $imageContent = [System.Convert]::ToBase64String($imageBytes)

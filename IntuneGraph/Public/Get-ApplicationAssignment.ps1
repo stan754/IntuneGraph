@@ -24,8 +24,8 @@ function Get-ApplicationAssignment {
         [string] $AssignmentID
     )
     if ($AssignmentID) {
-        Invoke-GetRequest "mobileApps/$IntuneID/assignments/$AssignmentID"
+        Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID/assignments/$AssignmentID" -ApiVersion 'beta'
     } else {
-        Invoke-GetRequest "mobileApps/$IntuneID/assignments"
+        Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$IntuneID/assignments" -ApiVersion 'beta'
     }
 }

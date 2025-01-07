@@ -20,8 +20,8 @@ function Invoke-GetRequest {
         # The Graph API version
         [Parameter(Mandatory = $false)]
         [ValidateSet('v1.0', 'beta')]
-        [string] $ApiVersion = 'beta'
+        [string] $ApiVersion = 'v1.0'
     )
 
-    Invoke-Request -Method "GET" -CollectionPath "deviceAppManagement/$CollectionPath" -ApiVersion $ApiVersion
+    Invoke-Request -Method "GET" -CollectionPath $CollectionPath -ApiVersion $ApiVersion
 }

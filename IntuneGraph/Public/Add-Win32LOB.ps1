@@ -221,7 +221,7 @@
         Write-Verbose "Sleeping for $Sleep seconds to allow patch completion..."
         Start-Sleep $Sleep
 
-        $FinalApplicationResponse = Invoke-GetRequest "mobileApps/$appId"
+        $FinalApplicationResponse = Invoke-GetRequest -CollectionPath "deviceAppManagement/mobileApps/$appId" -ApiVersion 'beta'
 
         return $FinalApplicationResponse
     }
