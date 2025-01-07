@@ -214,9 +214,9 @@
         $file = Wait-FileProcessing $fileUri "CommitFile"
 
         Write-Verbose "Committing the file into Azure Storage..."
-        $commitAppUri = "mobileApps/$appId"
+        $commitAppUri = "deviceAppManagement/mobileApps/$appId"
         $commitAppBody = Get-AppCommitBody $contentVersionId $LOBType
-        Invoke-PatchRequest $commitAppUri ($commitAppBody | ConvertTo-Json)
+        Invoke-PatchRequest -CollectionPath $commitAppUri -Body ($commitAppBody | ConvertTo-Json) -ApiVersion 'beta'
 
         Write-Verbose "Sleeping for $Sleep seconds to allow patch completion..."
         Start-Sleep $Sleep
