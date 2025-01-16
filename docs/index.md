@@ -15,7 +15,7 @@ A simple PowerShell script module to upload packages to Microsoft Intune.
 
     Install `{{powershell_module_name}}` with `Install-Module` and get started
 
-    [:octicons-arrow-right-24: Getting started](Getting-Started/Installation)
+    [:octicons-arrow-right-24: Getting started](Getting-Started/0-Installation)
 
 -   :material-package-down:{ .lg .middle } __Minimal Dependencies__
 
@@ -23,7 +23,7 @@ A simple PowerShell script module to upload packages to Microsoft Intune.
 
     Only one dependency, made by Microsoft so the chance of deprecation is minimal
 
-    [:octicons-arrow-right-24: Dependencies](Getting-Started/Installation/#prerequisites)
+    [:octicons-arrow-right-24: Dependencies](Getting-Started/0-Installation/#prerequisites)
 
 -   :material-scale-balance:{ .lg .middle } __Open Source, MIT__
 
