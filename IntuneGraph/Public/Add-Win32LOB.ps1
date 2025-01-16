@@ -67,7 +67,14 @@
         # By default this is set to system
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
-        [string] $InstallExperience = "system",
+        [string] $InstallScope = "system",
+        # Device restart behavior
+        [parameter(Mandatory = $false)]
+        [ValidateSet('basedOnReturnCode', 'allow', 'suppress', 'force')]
+        [string] $DeviceRestartBehavior = 'suppress',
+        # Allow an application to be uninstallable from the Company Portal
+        [parameter(Mandatory = $false)]
+        [bool] $AllowUninstall = $true,
         # The display version for the application in Microsoft Intune
         [parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
@@ -121,14 +128,16 @@
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $InstallExperience `
+                -InstallScope $InstallScope `
                 -MSIPackageType $MsiPackageType `
                 -MSIProductCode $MsiProductCode `
                 -MSIProductName $DisplayName `
                 -MSIProductVersion $MsiProductVersion `
                 -MSIPublisher $MsiPublisher `
                 -MSIRequiresReboot $MsiRequiresReboot `
-                -MSIUpgradeCode $MsiUpgradeCode
+                -MSIUpgradeCode $MsiUpgradeCode `
+                -AllowUninstall $AllowUninstall `
+                -DeviceRestartBehavior $DeviceRestartBehavior
         }
         else {
             $mobileAppBody = Get-Win32AppBody `
@@ -138,9 +147,11 @@
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $InstallExperience `
+                -InstallScope $InstallScope `
                 -InstallCommandLine $InstallCmdLine `
-                -UninstallCommandLine $uninstallcmdline
+                -UninstallCommandLine $uninstallcmdline `
+                -AllowUninstall $AllowUninstall `
+                -DeviceRestartBehavior $DeviceRestartBehavior
         }
 
         if ($DetectionRules.'@odata.type' -contains "#microsoft.graph.win32LobAppPowerShellScriptDetection" -and @($DetectionRules).'@odata.type'.Count -gt 1) {
