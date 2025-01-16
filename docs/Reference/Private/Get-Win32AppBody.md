@@ -9,9 +9,9 @@ This function returns a Win32 application body for the Microsoft Graph API
 
 ## SYNTAX
 ```powershell
-Get-Win32AppBody [-MSI] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallExperience <String> -MSIPackageType <String> -MSIProductCode <String> [-MSIProductName <String>] -MSIProductVersion <String> [-MSIPublisher <String>] -MSIRequiresReboot <Boolean> -MSIUpgradeCode <String> [<CommonParameters>]
+Get-Win32AppBody [-MSI] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallScope <String> [-DeviceRestartBehavior <String>] -MSIPackageType <String> -MSIProductCode <String> [-MSIProductName <String>] -MSIProductVersion <String> [-MSIPublisher <String>] -MSIRequiresReboot <Boolean> -MSIUpgradeCode <String> [-AllowUninstall <Boolean>] [<CommonParameters>]
 
-Get-Win32AppBody [-EXE] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallExperience <String> -InstallCommandLine <String> -UninstallCommandLine <String> [<CommonParameters>]
+Get-Win32AppBody [-EXE] -DisplayName <String> -Publisher <String> -Description <String> -Filename <String> -SetupFileName <String> -InstallScope <String> [-DeviceRestartBehavior <String>] -InstallCommandLine <String> -UninstallCommandLine <String> [-AllowUninstall <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get-Win32AppBody `
     -Description $Description `
     -Filename $SourceFileName `
     -SetupFileName "$SetupFileName" `
-    -InstallExperience $installExperience `
+    -InstallScope $installScope `
     -MSIPackageType $MsiPackageType `
     -MSIProductCode $MsiProductCode `
     -MSIProductName $DisplayName `
@@ -159,7 +159,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InstallExperience
+### -InstallScope
 The install scope of the application
 
 ```yaml
@@ -171,6 +171,22 @@ Valid Values: ['system', 'user']
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeviceRestartBehavior
+Device restart behavior
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Valid Values: ['basedOnReturnCode', 'allow', 'suppress', 'force']
+
+Required: False
+Position: Named
+Default value: suppress
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -307,6 +323,21 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowUninstall
+Allow an application to be uninstallable from the Company Portal
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

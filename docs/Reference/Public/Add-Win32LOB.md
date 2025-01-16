@@ -9,7 +9,7 @@ This function is used to upload a Win32 Application to Microsoft Intune
 
 ## SYNTAX
 ```powershell
-Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-InstallExperience] <String>] [-DisplayVersion <Version>] [-Sleep <Int32>] [<CommonParameters>]
+Add-Win32Lob [-SourceFile] <String> [-DisplayName <String>] [-Publisher] <String> [-Description] <String> [-DetectionRules] <Array> [-ReturnCodes] <Array> [[-InstallCmdLine] <String>] [[-UninstallCmdLine] <String>] [[-InstallScope] <String>] [-DeviceRestartBehavior <String>] [-AllowUninstall <Boolean>] [-DisplayVersion <Version>] [-Sleep <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -163,7 +163,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InstallExperience
+### -InstallScope
 The installscope for the application this can be either system or user
 By default this is set to system
 
@@ -176,6 +176,37 @@ Valid Values: ['system', 'user']
 Required: False
 Position: 9
 Default value: system
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeviceRestartBehavior
+Device restart behavior
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Valid Values: ['basedOnReturnCode', 'allow', 'suppress', 'force']
+
+Required: False
+Position: Named
+Default value: suppress
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowUninstall
+Allow an application to be uninstallable from the Company Portal
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
+Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
