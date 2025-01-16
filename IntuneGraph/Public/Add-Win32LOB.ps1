@@ -68,6 +68,10 @@
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
         [string] $InstallExperience = "system",
+        # Device restart behavior
+        [parameter(Mandatory = $false)]
+        [ValidateSet('basedOnReturnCode', 'allow', 'suppress', 'force')]
+        [string] $DeviceRestartBehavior = 'suppress',
         # Allow an application to be uninstallable from the Company Portal
         [parameter(Mandatory = $false)]
         [switch] $AllowUninstall,
@@ -132,7 +136,8 @@
                 -MSIPublisher $MsiPublisher `
                 -MSIRequiresReboot $MsiRequiresReboot `
                 -MSIUpgradeCode $MsiUpgradeCode `
-                -AllowUninstall $AllowUninstall
+                -AllowUninstall $AllowUninstall `
+                -DeviceRestartBehavior $DeviceRestartBehavior
         }
         else {
             $mobileAppBody = Get-Win32AppBody `
@@ -146,6 +151,7 @@
                 -InstallCommandLine $InstallCmdLine `
                 -UninstallCommandLine $uninstallcmdline `
                 -AllowUninstall $AllowUninstall
+                -DeviceRestartBehavior $DeviceRestartBehavior
         }
 
         if ($DetectionRules.'@odata.type' -contains "#microsoft.graph.win32LobAppPowerShellScriptDetection" -and @($DetectionRules).'@odata.type'.Count -gt 1) {

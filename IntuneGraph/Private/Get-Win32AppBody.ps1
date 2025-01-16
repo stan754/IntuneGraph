@@ -151,7 +151,10 @@ function Get-Win32AppBody {
         $body.displayName = $DisplayName
         $body.fileName = $Filename
         $body.installCommandLine = "$InstallCommandLine"
-        $body.installExperience = @{"runAsAccount" = "$InstallScope" }
+        $body.installExperience = @{
+            "runAsAccount" = "$InstallScope" 
+            "deviceRestartBehavior" = "$DeviceRestartBehavior"
+        }
         $body.informationUrl = $null
         $body.isFeatured = $false
         $body.minimumSupportedOperatingSystem = @{"v10_1607" = $true }
