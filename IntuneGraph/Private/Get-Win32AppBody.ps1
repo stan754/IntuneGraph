@@ -12,7 +12,7 @@ function Get-Win32AppBody {
             -Description $Description `
             -Filename $SourceFileName `
             -SetupFileName "$SetupFileName" `
-            -InstallExperience $installExperience `
+            -InstallScope $installScope `
             -MSIPackageType $MsiPackageType `
             -MSIProductCode $MsiProductCode `
             -MSIProductName $DisplayName `
@@ -68,7 +68,11 @@ function Get-Win32AppBody {
         # The install scope of the application
         [parameter(Mandatory = $true)]
         [ValidateSet('system', 'user')]
-        [string] $InstallExperience,
+        [string] $InstallScope,
+        # Device restart behavior
+        [parameter(Mandatory = $false)]
+        [ValidateSet('basedOnReturnCode', 'allow', 'suppress', 'force')]
+        [string] $DeviceRestartBehavior = 'suppress',
         # The install command for EXE
         [parameter(Mandatory = $true, ParameterSetName = "EXE")]
         [ValidateNotNullOrEmpty()]
@@ -101,7 +105,10 @@ function Get-Win32AppBody {
         # The MSI upgrade code
         [parameter(Mandatory = $true, ParameterSetName = "MSI")]
         [ValidateNotNullOrEmpty()]
-        [string] $MSIUpgradeCode
+        [string] $MSIUpgradeCode,
+        # Allow an application to be uninstallable from the Company Portal
+        [parameter(Mandatory = $false)]
+        [switch] $AllowUninstall
     )
 
     if ($MSI) {
@@ -112,7 +119,10 @@ function Get-Win32AppBody {
         $body.displayName = $DisplayName
         $body.fileName = $Filename
         $body.installCommandLine = "msiexec /i `"$SetupFileName`""
-        $body.installExperience = @{"runAsAccount" = "$InstallExperience" }
+        $body.installExperience = @{
+            "runAsAccount" = "$InstallScope" 
+            "deviceRestartBehavior" = "$DeviceRestartBehavior"
+        }
         $body.informationUrl = $null
         $body.isFeatured = $false
         $body.minimumSupportedOperatingSystem = @{"v10_1607" = $true }
@@ -132,6 +142,7 @@ function Get-Win32AppBody {
         $body.runAs32bit = $false
         $body.setupFilePath = $SetupFileName
         $body.uninstallCommandLine = "msiexec /x `"$MSIProductCode`""
+        $body.allowAvailableUninstall = $AllowUninstall
     }
     elseif ($EXE) {
         $body = @{ "@odata.type" = "#microsoft.graph.win32LobApp" }
@@ -140,7 +151,7 @@ function Get-Win32AppBody {
         $body.displayName = $DisplayName
         $body.fileName = $Filename
         $body.installCommandLine = "$InstallCommandLine"
-        $body.installExperience = @{"runAsAccount" = "$InstallExperience" }
+        $body.installExperience = @{"runAsAccount" = "$InstallScope" }
         $body.informationUrl = $null
         $body.isFeatured = $false
         $body.minimumSupportedOperatingSystem = @{"v10_1607" = $true }
@@ -152,6 +163,7 @@ function Get-Win32AppBody {
         $body.runAs32bit = $false
         $body.setupFilePath = $SetupFileName
         $body.uninstallCommandLine = "$UninstallCommandLine"
+        $body.allowAvailableUninstall = $AllowUninstall
     }
 
     $body

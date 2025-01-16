@@ -68,6 +68,9 @@
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
         [string] $InstallExperience = "system",
+        # Allow an application to be uninstallable from the Company Portal
+        [parameter(Mandatory = $false)]
+        [switch] $AllowUninstall,
         # The display version for the application in Microsoft Intune
         [parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
@@ -128,7 +131,8 @@
                 -MSIProductVersion $MsiProductVersion `
                 -MSIPublisher $MsiPublisher `
                 -MSIRequiresReboot $MsiRequiresReboot `
-                -MSIUpgradeCode $MsiUpgradeCode
+                -MSIUpgradeCode $MsiUpgradeCode `
+                -AllowUninstall $AllowUninstall
         }
         else {
             $mobileAppBody = Get-Win32AppBody `
@@ -140,7 +144,8 @@
                 -SetupFileName "$SetupFileName" `
                 -InstallExperience $InstallExperience `
                 -InstallCommandLine $InstallCmdLine `
-                -UninstallCommandLine $uninstallcmdline
+                -UninstallCommandLine $uninstallcmdline `
+                -AllowUninstall $AllowUninstall
         }
 
         if ($DetectionRules.'@odata.type' -contains "#microsoft.graph.win32LobAppPowerShellScriptDetection" -and @($DetectionRules).'@odata.type'.Count -gt 1) {
