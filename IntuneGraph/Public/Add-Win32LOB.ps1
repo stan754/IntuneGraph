@@ -67,7 +67,7 @@
         # By default this is set to system
         [parameter(Mandatory = $false, Position = 8)]
         [ValidateSet('system', 'user')]
-        [string] $InstallExperience = "system",
+        [string] $InstallScope = "system",
         # Device restart behavior
         [parameter(Mandatory = $false)]
         [ValidateSet('basedOnReturnCode', 'allow', 'suppress', 'force')]
@@ -128,7 +128,7 @@
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $InstallExperience `
+                -InstallScope $InstallScope `
                 -MSIPackageType $MsiPackageType `
                 -MSIProductCode $MsiProductCode `
                 -MSIProductName $DisplayName `
@@ -147,7 +147,7 @@
                 -Description $Description `
                 -Filename $SourceFileName `
                 -SetupFileName "$SetupFileName" `
-                -InstallExperience $InstallExperience `
+                -InstallScope $InstallScope `
                 -InstallCommandLine $InstallCmdLine `
                 -UninstallCommandLine $uninstallcmdline `
                 -AllowUninstall $AllowUninstall
