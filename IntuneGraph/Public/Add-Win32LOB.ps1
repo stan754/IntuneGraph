@@ -74,7 +74,7 @@
         [string] $DeviceRestartBehavior = 'suppress',
         # Allow an application to be uninstallable from the Company Portal
         [parameter(Mandatory = $false)]
-        [switch] $AllowUninstall,
+        [bool] $AllowUninstall = $true,
         # The display version for the application in Microsoft Intune
         [parameter(Mandatory = $false)]
         [ValidateNotNullOrEmpty()]
@@ -150,7 +150,7 @@
                 -InstallScope $InstallScope `
                 -InstallCommandLine $InstallCmdLine `
                 -UninstallCommandLine $uninstallcmdline `
-                -AllowUninstall $AllowUninstall
+                -AllowUninstall $AllowUninstall `
                 -DeviceRestartBehavior $DeviceRestartBehavior
         }
 

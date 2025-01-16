@@ -108,7 +108,7 @@ function Get-Win32AppBody {
         [string] $MSIUpgradeCode,
         # Allow an application to be uninstallable from the Company Portal
         [parameter(Mandatory = $false)]
-        [switch] $AllowUninstall
+        [bool] $AllowUninstall = $true
     )
 
     if ($MSI) {
